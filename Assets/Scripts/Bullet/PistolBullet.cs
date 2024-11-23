@@ -5,30 +5,30 @@ public class PistolBullet : Bullet
 {
     protected override void AssignData()
     {
-        InitiBullet(5000f, 45f, "pistol", 5000f);
+        InitiBullet(500f, 45f, "pistol", 10000f);
     }
 
-    protected override void OnCollisionEnter(Collision collision)
+    protected override void OnTriggerEnter(Collider other)
     {
-        // Avoid hitting the shooter itself
-        if (collision.gameObject == shooter)
+        // Return immediately if the other object's layer matches the shooter's layer
+        if (other.gameObject.layer == shooter.layer)
         {
             return;
         }
 
-        // Debug.Log($"Bullet hit: {collision.gameObject.name} at position: {collision.contacts[0].point}");
+        // Debug.Log($"Collision detected with {other.gameObject.name}");
 
-        // Handle collision logic, such as applying damage to the target
-        IDamageable target = collision.gameObject.GetComponent<IDamageable>();
+
+        IDamageable target = other.GetComponent<IDamageable>();
         if (target != null)
         {
             float distanceTravelled = Vector3.Distance(startPosition, transform.position);
             float calculatedDamage = CalculateDamage(distanceTravelled);
             target.TakeDamage(calculatedDamage, true);
-            Debug.Log($"Damage dealt to {collision.gameObject.name} of {calculatedDamage}");
+            Debug.Log($"Damage dealt to {other.gameObject.name} of {calculatedDamage}");
         }
 
-        // Destroy the bullet after collision
         Destroy(gameObject);
     }
+
 }

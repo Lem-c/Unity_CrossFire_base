@@ -72,7 +72,7 @@ public abstract class Bullet : MonoBehaviour
     }
 
     // Abstract method to handle collision
-    protected abstract void OnCollisionEnter(Collision collision);
+    protected abstract void OnTriggerEnter(Collider other);
     protected abstract void AssignData();
 }
 

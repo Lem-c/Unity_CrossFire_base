@@ -31,8 +31,8 @@ Transform:
   m_GameObject: {fileID: 3942135140141494703}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -413.7, y: -294.5, z: -1875.7202}
-  m_LocalScale: {x: 30, y: 30, z: 30}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -103,7 +103,7 @@ CapsuleCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -140,7 +140,7 @@ MonoBehaviour:
   weaponManifest: {fileID: 11400000, guid: 8062dfab452351e4e996686537e4ac15, type: 2}
   currentAmmo: 0
   holder: {fileID: 3942135140141494703}
-  enemyState: {fileID: 0}
+  enemyState: {fileID: 8602464323652418692}
   playerTransform: {fileID: 8714329876477248219}
   detectionRange: 1000
   rotationSpeed: 5
@@ -166,8 +166,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0

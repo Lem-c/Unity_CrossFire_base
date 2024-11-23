@@ -9,12 +9,13 @@ public class PlayerWeapon : MonoBehaviour
     public WeaponController knife;
     public WeaponController grenade;
 
-    private WeaponController currentWeapon;
+    private WeaponController currentWeapon = null;
 
     void Start()
     {
+        OnBagInitialized();
         // Start with the main weapon
-        SwitchWeapon(pistol);
+        SwitchWeapon(mainWeapon);
     }
 
     void Update()
@@ -43,6 +44,29 @@ public class PlayerWeapon : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             SwitchWeapon(grenade);
+        }
+    }
+
+    private void OnBagInitialized()
+    {
+        if (mainWeapon != null)
+        {
+            mainWeapon.gameObject.SetActive(false);
+        }
+
+        if(pistol != null)
+        {
+            pistol.gameObject.SetActive(false);
+        }
+
+        if(knife != null)
+        {
+            knife.gameObject.SetActive(false);
+        }
+
+        if(grenade != null)
+        {
+            grenade.gameObject.SetActive(false);
         }
     }
 

@@ -47,7 +47,7 @@ public class Enemy : WeaponController
 
     protected override void Update()
     {
-        HandleEnemyBehavior();
+        // HandleEnemyBehavior();
     }
 
     private void HandleEnemyBehavior()

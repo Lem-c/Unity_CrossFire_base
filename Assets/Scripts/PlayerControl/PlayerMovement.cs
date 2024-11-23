@@ -24,11 +24,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection;
 
     [Header("Movement Settings")]
-    private float walkSpeed = 220f;
-    private float crouchSpeed = 110f;
-    private float silentSpeed = 130f;
-    private float jumpForce = 260f; // Separate jump force parameter
-    private float gravity = 620f; // Increased gravity for faster falling
+    private float walkSpeed = 25f;
+    private float crouchSpeed = 6.5f;
+    private float silentSpeed = 10f;
+    private float jumpForce = 30f; // Separate jump force parameter
+    private float gravity = 100f; // Increased gravity for faster falling
     public float crouchHeight = 1.5f;
     public float normalHeight = 2.5f;
     public float crouchTransitionSpeed = 10f; // Speed of height transition when crouching
@@ -161,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
     private void HandleFootsteps()
     {
         // Only play footstep sounds when the player is moving and grounded
-        if (isGrounded && characterController.velocity.magnitude > 0.1f)
+        if (isGrounded && characterController.velocity.magnitude > silentSpeed)
         {
             footstepTimer += Time.deltaTime;
 
@@ -217,7 +217,7 @@ public class PlayerMovement : MonoBehaviour
                     if (footstepSound.materialName == materialName)
                     {
                         // Choose a random clip from the list
-                        int randomIndex = Random.Range(0, footstepSound.footstepClips.Count);
+                        int randomIndex = Random.Range(0, defaultFootStepClips.Count);
                         if (footstepSound.footstepClips.Capacity > 1)
                         {
                             clipToPlay = footstepSound.footstepClips[randomIndex];
@@ -225,6 +225,7 @@ public class PlayerMovement : MonoBehaviour
                         else
                         {
                             clipToPlay = defaultFootStepClips[randomIndex];
+                            // Debug.Log($"playing {randomIndex}");
                         }
                         break;
                     }

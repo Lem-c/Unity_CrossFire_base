@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static PlayerMovement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -33,23 +31,7 @@ public class PlayerMovement : MonoBehaviour
     public float normalHeight = 2.5f;
     public float crouchTransitionSpeed = 10f; // Speed of height transition when crouching
 
-    [Header("Footstep Settings")]
-    public AudioSource footstepAudioSource;
-    public float footstepInterval = 0.5f; // Time between footsteps
-    public List<AudioClip> defaultFootStepClips = new List<AudioClip>();
-    private float footstepTimer;
-
-    public LayerMask groundLayerMask; // Layers considered as ground
-
-    [System.Serializable]
-    public class FootstepSound
-    {
-        public string materialName;
-        public List<AudioClip> footstepClips = new List<AudioClip>();
-    }
-    public List<FootstepSound> footstepSounds = new List<FootstepSound>();
-
-    // player state params
+    // Player state parameters
     private float horizontalInput;
     private float verticalInput;
     private bool isJumping;
@@ -64,10 +46,8 @@ public class PlayerMovement : MonoBehaviour
     /// <returns></returns>
     public static bool GetIsCrouching()
     {
-        
         return Instance.isCrouching;
     }
-
 
     private void Awake()
     {
@@ -91,16 +71,16 @@ public class PlayerMovement : MonoBehaviour
     {
         GetInput();
         HandleMovement();
-        HandleFootsteps();
         HandleJump();
         HandleCrouchHeight();
+        // Footstep handling is now managed by FootStepAudioPlayer
     }
 
     private void GetInput()
     {
         horizontalInput = Input.GetAxis("Horizontal"); // A, D
-        verticalInput = Input.GetAxis("Vertical");   // W, S
-        isJumping = Input.GetButton("Jump"); // Space
+        verticalInput = Input.GetAxis("Vertical");     // W, S
+        isJumping = Input.GetButton("Jump");           // Space
         isCrouching = Input.GetKey(KeyCode.LeftControl); // LCtrl
         isSilentMoving = Input.GetKey(KeyCode.LeftShift); // LShift
     }
@@ -158,111 +138,25 @@ public class PlayerMovement : MonoBehaviour
         characterController.height = Mathf.Lerp(characterController.height, targetHeight, Time.deltaTime * crouchTransitionSpeed);
     }
 
-    private void HandleFootsteps()
+    // Provide methods for FootStepAudioPlayer to access necessary information
+    public bool IsGrounded()
     {
-        // Only play footstep sounds when the player is moving and grounded
-        if (isGrounded && characterController.velocity.magnitude > silentSpeed)
-        {
-            footstepTimer += Time.deltaTime;
-
-            // Adjust the footstep interval based on movement speed
-            float interval = footstepInterval;
-            if (isCrouching)
-            {
-                interval *= 1.5f; // Slower footsteps when crouching
-            }
-            else if (isSilentMoving)
-            {
-                interval *= 1.2f; // Slightly slower when moving silently
-            }
-
-            if (footstepTimer >= interval)
-            {
-                // Reset the timer
-                footstepTimer = 0f;
-
-                // Play footstep sound
-                PlayFootstepSound();
-            }
-        }
-        else
-        {
-            // Reset the timer when not moving
-            footstepTimer = 0f;
-        }
+        return isGrounded;
     }
 
-    private void PlayFootstepSound()
+    public bool IsMoving()
     {
-        // Perform a Raycast downwards to detect the ground object
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 500f, groundLayerMask))
-        {
-            // Retrieve the GameObject that was hit by the Raycast
-            GameObject hitObject = hit.collider.gameObject;
-
-            // Try to get the MeshRenderer component from the hit object
-            MeshRenderer meshRenderer = hitObject.GetComponent<MeshRenderer>();
-            if (meshRenderer != null)
-            {
-                // Get the material name from the MeshRenderer's sharedMaterial
-                string materialName = meshRenderer.sharedMaterial != null ? meshRenderer.sharedMaterial.name : "Default";
-
-                // Debug.Log("Ground Material Detected: " + materialName);
-
-                // Find the matching footstep sound
-                AudioClip clipToPlay = null;
-                foreach (FootstepSound footstepSound in footstepSounds)
-                {
-                    if (footstepSound.materialName == materialName)
-                    {
-                        // Choose a random clip from the list
-                        int randomIndex = Random.Range(0, defaultFootStepClips.Count);
-                        if (footstepSound.footstepClips.Capacity > 1)
-                        {
-                            clipToPlay = footstepSound.footstepClips[randomIndex];
-                        }
-                        else
-                        {
-                            clipToPlay = defaultFootStepClips[randomIndex];
-                            // Debug.Log($"playing {randomIndex}");
-                        }
-                        break;
-                    }
-                }
-
-                // If no specific sound is found, use a default sound
-                if (clipToPlay == null && footstepSounds.Count > 0)
-                {
-                    int randomIndex = Random.Range(0, footstepSounds[0].footstepClips.Count);
-
-                    // First sound in the list as default
-                    if (footstepSounds[0].footstepClips.Capacity > 1)
-                    {
-                        clipToPlay = footstepSounds[0].footstepClips[randomIndex];
-                    }
-                    else
-                    {
-                        clipToPlay = defaultFootStepClips[randomIndex];
-                    }
-                }
-
-                // Play the footstep sound
-                if (clipToPlay != null)
-                {
-                    // Debug.Log("Playing Footstep Sound for Material: " + materialName);
-                    footstepAudioSource.PlayOneShot(clipToPlay);
-                }
-            }
-            else
-            {
-                Debug.LogWarning("No MeshRenderer found on the hit object.");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("No ground detected beneath player.");
-        }
+        // Use a small threshold to determine movement
+        return characterController.velocity.magnitude > 0.1f;
     }
 
+    public bool IsCrouching()
+    {
+        return isCrouching;
+    }
+
+    public bool IsSilentMoving()
+    {
+        return isSilentMoving;
+    }
 }

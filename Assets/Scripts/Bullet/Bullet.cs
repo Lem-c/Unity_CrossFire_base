@@ -46,15 +46,21 @@ public abstract class Bullet : MonoBehaviour
     }
 
     // Update bullet movement each frame
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
-        // Move bullet forward at the defined velocity
-        transform.Translate(Vector3.forward * velocity * Time.deltaTime);
-
-        // Calculate distance travelled
-        float distanceTravelled = Vector3.Distance(startPosition, transform.position);
+        if (rb != null)
+        {
+            // Move the bullet using Rigidbody for consistent physics handling
+            rb.velocity = transform.forward * velocity;
+        }
+        else
+        {
+            // Fallback to manual movement
+            transform.Translate(Vector3.forward * velocity * Time.deltaTime);
+        }
 
         // Destroy bullet if it exceeds max range
+        float distanceTravelled = Vector3.Distance(startPosition, transform.position);
         if (distanceTravelled >= maxRange)
         {
             Destroy(gameObject);

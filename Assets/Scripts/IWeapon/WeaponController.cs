@@ -135,7 +135,7 @@ public class WeaponController : MonoBehaviour
                 {
                     instantiatedBullet.SetShooter(holder != null ? holder : gameObject); // Set the shooter to avoid self-hit
                 }
-                Debug.Log("Bullet out!");
+                // Debug.Log("Bullet out!");
             }
         }
         else

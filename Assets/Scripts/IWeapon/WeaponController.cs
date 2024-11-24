@@ -18,6 +18,7 @@ public class WeaponController : MonoBehaviour
     protected bool isDrawing = false;
 
     public static int displayAmmo;
+    public static string displayWeapon;
 
     // Public method to set Animator integer parameter
     public void SetAnimatorInteger(string parameterName, int value)
@@ -36,7 +37,10 @@ public class WeaponController : MonoBehaviour
     protected virtual void Update()
     {
         // HandleWeaponInput();
+
+        // UI update
         displayAmmo = currentAmmo;
+        displayWeapon = weaponManifest.weaponName;
     }
 
     public virtual void InitializeWeapon()

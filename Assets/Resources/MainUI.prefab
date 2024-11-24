@@ -371,6 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a00bd1a51b04e7479d1b735832653e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponNameText: {fileID: 5452694352527907890}
   ammoCountText: {fileID: 85467356643301623}
 --- !u!1 &5712000856744535106
 GameObject:

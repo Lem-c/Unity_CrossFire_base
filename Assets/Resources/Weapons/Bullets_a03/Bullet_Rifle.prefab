@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6672316653450938078}
   - component: {fileID: 7837618187103076338}
   - component: {fileID: 3264186444320366599}
-  - component: {fileID: 6528096921758396483}
+  - component: {fileID: -7868581819427889748}
   m_Layer: 6
-  m_Name: Bullet_Pistol
+  m_Name: Bullet_Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,7 +106,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6528096921758396483
+--- !u!114 &-7868581819427889748
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6443470745177156973}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f8efdbd4837fbc489fb5a62ded756f8, type: 3}
+  m_Script: {fileID: 11500000, guid: ce53540fd569b1649a61e4d981c3d599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6443470745177156973}
@@ -125,17 +125,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -0.49991775
-      outSlope: -0.49991775
+      inSlope: -0.16356152
+      outSlope: -0.16356152
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 0.50008225
-      inSlope: -0.49991775
-      outSlope: -0.49991775
+      time: 0.71502316
+      value: 0.8830497
+      inSlope: -0.7554567
+      outSlope: -0.7554567
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9958191
+      value: 0.5047188
+      inSlope: -1.3473519
+      outSlope: -1.3473519
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -143,4 +152,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  damage: 20
+  damage: 35

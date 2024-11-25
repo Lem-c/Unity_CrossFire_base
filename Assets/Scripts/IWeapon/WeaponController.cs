@@ -50,7 +50,8 @@ public class WeaponController : MonoBehaviour
         // Replay reload
         isReloading = false;
         weaponAnimator = GetComponent<Animator>();
-        Debug.Log($"Initializing weapon: {gameObject.name}, Animator: {weaponAnimator}");
+
+        // Debug.Log($"Initializing weapon: {gameObject.name}, Animator: {weaponAnimator}");
 
         // Only assign animatorOverride if it exists
         if (weaponManifest.animatorOverride != null)
@@ -125,32 +126,53 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void ShootBullet()
     {
-        // Shooting logic: Instantiate bullet
         Camera playerCamera = Camera.main;
         if (playerCamera != null)
         {
             Vector3 bulletSpawnPosition = playerCamera.transform.position + playerCamera.transform.forward;
             Quaternion bulletSpawnRotation = playerCamera.transform.rotation;
+
             if (weaponManifest.bulletPrefab == null)
             {
-                Debug.LogError("No bullet defined");
+                Debug.LogError("No bullet prefab defined in the weapon manifest!");
+                return;
             }
-            else
+
+            // Instantiate the single bullet prefab
+            GameObject bullet = Instantiate(weaponManifest.bulletPrefab, bulletSpawnPosition, bulletSpawnRotation);
+            if (bullet != null)
             {
-                GameObject bullet = Instantiate(weaponManifest.bulletPrefab, bulletSpawnPosition, bulletSpawnRotation);
-                PistolBullet instantiatedBullet = bullet.GetComponent<PistolBullet>();
-                if (instantiatedBullet != null)
+                // Modify bullet behavior based on weapon type
+                switch (weaponManifest.weaponType)
                 {
-                    instantiatedBullet.SetShooter(holder != null ? holder : gameObject); // Set the shooter to avoid self-hit
+                    case WeaponType.Pistol:
+                        PistolBullet pistolBullet = bullet.GetComponent<PistolBullet>();
+                        if (pistolBullet != null)
+                        {
+                            pistolBullet.SetShooter(holder != null ? holder : gameObject);
+                        }
+                        break;
+
+                    case WeaponType.Rifle:
+                        RifleBullet rifleBullet = bullet.GetComponent<RifleBullet>();
+                        if (rifleBullet != null)
+                        {
+                            rifleBullet.SetShooter(holder != null ? holder : gameObject);
+                        }
+                        break;
+
+                    default:
+                        Debug.LogError($"Unsupported weapon type: {weaponManifest.weaponType}");
+                        break;
                 }
-                // Debug.Log("Bullet out!");
             }
         }
         else
         {
-            Debug.Log("Assign bullet factory!");
+            Debug.LogError("No player camera found! Unable to spawn bullet.");
         }
     }
+
 
     public virtual void HandleReload()
     {

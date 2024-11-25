@@ -1,13 +1,14 @@
-// A specific bullet type: pistol
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PistolBullet : Bullet
+public class RifleBullet : Bullet
 {
-
     protected override void AssignData()
     {
-        InitiBullet(500f, "pistol", 5000f);
+        InitiBullet(700f, "rifle", 10000f);
     }
+
     protected override void Start()
     {
         base.Start();
@@ -21,4 +22,5 @@ public class PistolBullet : Bullet
     }
 
     protected override void OnTriggerEnter(Collider other){}
+
 }

@@ -78,6 +78,7 @@ public class PlayerWeapon : MonoBehaviour
         }
 
         currentWeapon = newWeapon;
+
         if (currentWeapon != null)
         {
             currentWeapon.gameObject.SetActive(true);

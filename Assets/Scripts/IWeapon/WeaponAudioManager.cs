@@ -4,55 +4,28 @@ using UnityEngine;
 
 public class WeaponAudioManager : MonoBehaviour
 {
-    // Singleton instance for global safe access
-    private static WeaponAudioManager _instance;
-    public static WeaponAudioManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<WeaponAudioManager>();
-                if (_instance == null)
-                {
-                    GameObject go = new GameObject("WeaponAudioManager");
-                    _instance = go.AddComponent<WeaponAudioManager>();
-                }
-            }
-            return _instance;
-        }
-    }
+    // Audio clips for weapon actions
+    [SerializeField] private AudioClip drawClip;
+    [SerializeField] private AudioClip fireClip;
+    [SerializeField] private AudioClip reloadClip_1;
+    [SerializeField] private AudioClip reloadClip_2;
+    [SerializeField] private AudioClip reloadClip_3;
 
-    // AudioClips for different weapon actions
-    [SerializeField]
-    public AudioClip drawClip;
-    public AudioClip fireClip;
-    public AudioClip reloadClip;
-
+    // Private audio source for this weapon
     private AudioSource audioSource;
 
     private void Awake()
     {
-        // Ensure only one instance of WeaponAudioManager exists
-        if (_instance == null)
-        {
-            _instance = this;
-            if (transform.parent == null)
-            {
-                // only apply to root GameObjects
-                DontDestroyOnLoad(gameObject);
-            }
-        }
-        else if (_instance != this)
-        {
-            Destroy(gameObject);
-        }
-
+        // Ensure an AudioSource component is present
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
+
+        // Optional: Customize AudioSource settings (e.g., volume, pitch)
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0.0f; // 2D sound
     }
 
     // Public methods to play audio clips
@@ -66,11 +39,21 @@ public class WeaponAudioManager : MonoBehaviour
         PlaySound(fireClip);
     }
 
-    public void PlayReloadSound()
+    public void PlayStartReloadSound()
     {
-        PlaySound(reloadClip);
+        PlaySound(reloadClip_1);
     }
 
+    public void PlayReloadMagSound() { 
+        PlaySound(reloadClip_2);
+    }
+
+    public void PlayStopReloadSound()
+    {
+        PlaySound(reloadClip_3);
+    }
+
+    // Private helper method to play a sound
     private void PlaySound(AudioClip clip)
     {
         if (clip != null && audioSource != null)
@@ -79,10 +62,34 @@ public class WeaponAudioManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Audio source missed.");
+            Debug.LogWarning($"Audio clip is missing or AudioSource is not set on {gameObject.name}");
+        }
+    }
+
+    public void StartFullAuto(bool isFiring, float fireRate)
+    {
+        if (!isFiring)
+        {
+            isFiring = true;
+            StartCoroutine(PlayFullAutoSound(isFiring, fireRate));
+        }
+    }
+
+    public void StopFullAuto(bool isFiring, float fireRate)
+    {
+        isFiring = false;
+        StopCoroutine(PlayFullAutoSound(isFiring, fireRate));
+    }
+
+    private IEnumerator PlayFullAutoSound(bool isFiring, float fireRate)
+    {
+        while (isFiring)
+        {
+            if (fireClip != null)
+            {
+                audioSource.PlayOneShot(fireClip);
+            }
+            yield return new WaitForSeconds(fireRate); // Wait for the fire rate interval
         }
     }
 }
-
-// WeaponAudioManager.Instance.PlayFireSound();
-// WeaponAudioManager.Instance.PlayReloadSound();

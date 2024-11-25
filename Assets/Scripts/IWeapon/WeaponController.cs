@@ -8,12 +8,14 @@ public class WeaponController : MonoBehaviour
     public Weapon weaponManifest;
     public int currentAmmo;
     public GameObject holder;
+    public WeaponAudioManager audioManager;
 
     protected IWeaponState currentState;
     protected Animator weaponAnimator;
 
     protected float lastFireTime;
     protected bool isReloading;
+    protected bool isFiring;
     protected bool hasDrawnWeapon = false;
     protected bool isDrawing = false;
 
@@ -36,7 +38,7 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void Update()
     {
-        // HandleWeaponInput();
+        HandleWeaponInput();
 
         // UI update
         displayAmmo = currentAmmo;
@@ -48,14 +50,14 @@ public class WeaponController : MonoBehaviour
         // Replay reload
         isReloading = false;
         weaponAnimator = GetComponent<Animator>();
+        Debug.Log($"Initializing weapon: {gameObject.name}, Animator: {weaponAnimator}");
+
         // Only assign animatorOverride if it exists
         if (weaponManifest.animatorOverride != null)
         {
             weaponAnimator.runtimeAnimatorController = weaponManifest.animatorOverride;
         }
 
-        // Draw sound and weapon
-        WeaponAudioManager.Instance.PlayDrawSound();
         isDrawing = true;
         StartCoroutine(WaitForDrawAnimation());
 
@@ -83,6 +85,7 @@ public class WeaponController : MonoBehaviour
             }
             else
             {
+                isFiring = false;
                 SetState(new WeaponIdleState()); // No input / Walk
             }
         }
@@ -110,8 +113,9 @@ public class WeaponController : MonoBehaviour
     {
         if (currentAmmo > 0)
         {
-            WeaponAudioManager.Instance.PlayFireSound();
             currentAmmo--;
+            isFiring = true;
+            weaponAnimator.ResetTrigger("Fire");
             weaponAnimator.SetTrigger("Fire");
             ShootBullet();
             // change last fire time
@@ -157,8 +161,8 @@ public class WeaponController : MonoBehaviour
     {
         if (!isReloading && !isDrawing)
         {
-            WeaponAudioManager.Instance.PlayReloadSound();
             isReloading = true;
+            isFiring = false;
             weaponAnimator.SetTrigger("Reload");
             // Coroutine to simulate reload delay
             StartCoroutine(ReloadCoroutine());

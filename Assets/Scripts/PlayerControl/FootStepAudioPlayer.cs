@@ -50,16 +50,16 @@ public class FootStepAudioPlayer : MonoBehaviour
 
             // Adjust the footstep interval based on movement speed
             float interval = footstepInterval;
-            if (playerMovement.IsCrouching())
+            /* if (playerMovement.IsCrouching())
             {
                 interval *= 1.5f; // Slower footsteps when crouching
             }
             else if (playerMovement.IsSilentMoving())
             {
                 interval *= 1.2f; // Slightly slower when moving silently
-            }
+            }*/
 
-            if (footstepTimer >= interval)
+            if (footstepTimer >= interval && !playerMovement.IsCrouching() && !playerMovement.IsSilentMoving())
             {
                 // Reset the timer
                 footstepTimer = 0f;

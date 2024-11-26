@@ -100,7 +100,7 @@ public abstract class Bullet : MonoBehaviour
             return;
         }
 
-        Debug.Log($"Collision detected with {collider.gameObject.name}");
+        // Debug.Log($"Collision detected with {collider.gameObject.name}");
 
         // Check if the target implements IDamageable
         IDamageable target = collider.GetComponent<IDamageable>();

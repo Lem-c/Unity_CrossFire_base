@@ -39,6 +39,7 @@ public class WeaponController : MonoBehaviour
     protected virtual void Update()
     {
         HandleWeaponInput();
+        HandleAnimationInput();
 
         // UI update
         displayAmmo = currentAmmo;
@@ -100,6 +101,19 @@ public class WeaponController : MonoBehaviour
         currentState.HandleState(this);
     }
 
+    private void HandleAnimationInput()
+    {
+        if (Input.GetKey(KeyCode.Mouse0) && !isReloading)
+        {
+            weaponAnimator.SetBool("isFiring", true);
+            weaponAnimator.SetInteger("Walk", -1);
+        }
+        else
+        {
+            weaponAnimator.SetBool("isFiring", false);
+        }
+    }
+
     public void SetState(IWeaponState newState)
     {
         currentState = newState;
@@ -115,9 +129,9 @@ public class WeaponController : MonoBehaviour
         if (currentAmmo > 0)
         {
             currentAmmo--;
+
             isFiring = true;
-            weaponAnimator.ResetTrigger("Fire");
-            weaponAnimator.SetTrigger("Fire");
+
             ShootBullet();
             // change last fire time
             lastFireTime = Time.time;
@@ -184,7 +198,6 @@ public class WeaponController : MonoBehaviour
         if (!isReloading && !isDrawing)
         {
             isReloading = true;
-            isFiring = false;
             weaponAnimator.SetTrigger("Reload");
             // Coroutine to simulate reload delay
             StartCoroutine(ReloadCoroutine());

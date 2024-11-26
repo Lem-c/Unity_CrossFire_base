@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: AK47
   weaponType: 1
   maxAmmo: 30
-  fireRate: 0.3
-  reloadTime: 3.458
+  fireRate: 0.11
+  reloadTime: 3.1
   bulletPrefab: {fileID: 6443470745177156973, guid: 876b1af6868c5ee46b8b5053cd1c3e25, type: 3}
   animatorOverride: {fileID: 0}

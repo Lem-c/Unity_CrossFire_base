@@ -17,9 +17,10 @@ MonoBehaviour:
   maxAmmo: 20
   fireRate: 0.31
   reloadTime: 2.792
-  verticalRecoil: 0.1
+  verticalRecoil: 0.2
   horizontalRecoil: 0.005
-  recoilResetSpeed: 2
+  recoilGrowthRate: 0
+  recoilResetSpeed: 5
   savedLocalPosition: {x: 0, y: 0, z: 0}
   savedLocalRotation: {x: 0, y: 0, z: 0, w: 0}
   savedLocalScale: {x: -0.1, y: 0.1, z: 0.1}

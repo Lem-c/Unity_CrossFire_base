@@ -12,6 +12,9 @@ public class Weapon : ScriptableObject
     public float fireRate;
     public float reloadTime;
 
+    [Range(0f, 100f)]
+    public float weight;
+
     // Recoil properties
     public float verticalRecoil;
     public float horizontalRecoil;

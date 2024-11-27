@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public abstract class Bullet : MonoBehaviour
@@ -16,6 +17,10 @@ public abstract class Bullet : MonoBehaviour
     protected Vector3 startPosition;
     protected Vector3 previousPosition;
     private Rigidbody rb;
+
+    [SerializeField] protected GameObject markPrefab; // Prefab for wall marks
+    [SerializeField] protected int maxMarks = 30; // Maximum number of marks allowed
+    private static Queue<GameObject> marksQueue = new Queue<GameObject>();
 
     protected GameObject shooter { set; get; } // Reference to the shooter to avoid self-hit
     // public method to set the shooter
@@ -79,15 +84,17 @@ public abstract class Bullet : MonoBehaviour
             Ray ray = new Ray(previousPosition, direction.normalized);
             if (Physics.Raycast(ray, out RaycastHit hit, distance))
             {
-                HandleCollision(hit.collider);
+                HandleCollision(hit);
             }
         }
 
         previousPosition = transform.position;
     }
 
-    protected void HandleCollision(Collider collider)
+    protected void HandleCollision(RaycastHit hit)
     {
+        Collider collider = hit.collider;
+
         // Ignore objects on the Bullet layer
         if (collider.gameObject.layer == LayerMask.NameToLayer("Bullet"))
         {
@@ -112,6 +119,12 @@ public abstract class Bullet : MonoBehaviour
             Debug.Log($"Damage dealt to {collider.gameObject.name} of {calculatedDamage}");
         }
 
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Map"))
+        {
+            // Add markers
+            GenerateMark(hit.point, hit.normal, hit.collider.transform);
+        }
+
         // Destroy the bullet after collision
         Destroy(gameObject);
     }
@@ -124,6 +137,27 @@ public abstract class Bullet : MonoBehaviour
             return damage * damageFalloff.Evaluate(distance / maxRange);
         }
         return damage;
+    }
+
+    /// <summary>
+    /// Handles mark creation
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="normal"></param>
+    /// <param name="parent"></param>
+    protected void GenerateMark(Vector3 position, Vector3 normal, Transform parent)
+    {
+        if (markPrefab == null) return;
+
+        GameObject mark = Instantiate(markPrefab, position, Quaternion.LookRotation(normal));
+        mark.transform.SetParent(parent);
+
+        marksQueue.Enqueue(mark);
+        if (marksQueue.Count > maxMarks)
+        {
+            GameObject oldestMark = marksQueue.Dequeue();
+            Destroy(oldestMark);
+        }
     }
 
     // Abstract method to handle collision

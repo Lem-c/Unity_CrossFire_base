@@ -6,7 +6,7 @@ public class FootStepAudioPlayer : MonoBehaviour
 {
     [Header("Footstep Settings")]
     public AudioSource footstepAudioSource;
-    public float footstepInterval = 0.05f; // Time between footsteps
+    public float footstepInterval; // Time between footsteps
     public List<AudioClip> defaultFootStepClips = new List<AudioClip>();
     private float footstepTimer;
 

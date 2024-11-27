@@ -79,10 +79,8 @@ public class PlayerCameraControl : MonoBehaviour
             // Incrementally increase vertical recoil within the maximum bounds
             currentVerticalRecoil = Mathf.Min(currentVerticalRecoil + growthRate * Time.deltaTime, verticalRecoil);
 
-            Debug.Log("Current Vertical Recoil: " + currentVerticalRecoil);
-
             float recoilX = Random.Range(-horizontalRecoil, horizontalRecoil); // Horizontal
-            float recoilY = Random.Range(0f, currentVerticalRecoil);          // Vertical
+            float recoilY = Random.Range(0f, verticalRecoil);          // Vertical
 
             // Add to target recoil
             targetRecoil += new Vector3(recoilY, recoilX, 0);
@@ -95,18 +93,16 @@ public class PlayerCameraControl : MonoBehaviour
         currentRecoil = Vector3.Lerp(currentRecoil, targetRecoil, Time.deltaTime * 10f);
 
         // Apply to camera rotation
-        xRotation -= currentRecoil.x; // Apply vertical recoil to pitch
-        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, currentRecoil.y, 0); // Apply horizontal recoil
+        playerCamera.transform.localEulerAngles -= new Vector3(currentRecoil.x, currentRecoil.y, 0);
 
         float recoilResetSpeed = playerController.currentWeapon.weaponManifest.recoilResetSpeed;
-
         // Gradually reset the recoil
         targetRecoil = Vector3.Lerp(targetRecoil, Vector3.zero, Time.deltaTime * recoilResetSpeed);
 
         // Reset the accumulated recoil when no longer firing
         if (!Input.GetMouseButton(0))
         {
-            currentVerticalRecoil = Mathf.Lerp(currentVerticalRecoil, 0, Time.deltaTime * recoilResetSpeed);
+            currentVerticalRecoil = 0;
         }
     }
 }

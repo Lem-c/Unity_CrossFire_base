@@ -118,7 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce53540fd569b1649a61e4d981c3d599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6443470745177156973}
   damageFalloff:
     serializedVersion: 2
     m_Curve:
@@ -153,3 +152,5 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   damage: 35
+  markPrefab: {fileID: 3737717460431956057, guid: c6264631fb76c4b4787795735e8d8092, type: 3}
+  maxMarks: 30

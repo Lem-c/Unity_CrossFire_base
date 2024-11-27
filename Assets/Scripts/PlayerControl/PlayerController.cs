@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection;
 
     [Header("Movement Settings")]
-    private float walkSpeed = 25f;
+    private float walkSpeed = 30f;
     private float crouchSpeed = 6.5f;
     private float silentSpeed = 10f;
     private float jumpForce = 30f;
@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
     // Player state parameters
     private float currentHeight;
+    private float maxSpeed;
     private float horizontalInput;
     private float verticalInput;
     private bool isJumping;
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         currentHeight = normalHeight;
+        maxSpeed = walkSpeed;
 
         OnBagInitialized();
 
@@ -48,14 +50,11 @@ public class PlayerController : MonoBehaviour
     {
         GetInput();
         HandleMovement();
+        HandleDifWeaponMoveSpeed();
         HandleJump();
         HandleCrouchHeight();
         HandleWeaponSwitching();
         HandleWeaponDrop();
-        /*if (currentWeapon != null)
-        {
-            currentWeapon.HandleWeaponInput();
-        }*/
     }
 
     private void GetInput()
@@ -246,6 +245,20 @@ public class PlayerController : MonoBehaviour
                 float throwForce = 100f;
                 rb.AddForce(throwDirection.normalized * throwForce, ForceMode.Impulse);
             }
+        }
+    }
+
+    private void HandleDifWeaponMoveSpeed()
+    {
+        if (weaponSlots == null || weaponSlots[0] == null ||
+            weaponSlots[1] == null || weaponSlots[3] == null) { return; }
+        if (currentWeapon == weaponSlots[0])
+        {
+            walkSpeed = maxSpeed / (1 + 0.01f * (currentWeapon.weaponManifest.weight));
+        }
+        else if (currentWeapon == weaponSlots[2] || currentWeapon == weaponSlots[3])
+        {
+            walkSpeed = maxSpeed;
         }
     }
 

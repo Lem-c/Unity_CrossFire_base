@@ -37,7 +37,7 @@ public class PlayerKillCount : MonoBehaviour
         killCount++;
         Debug.Log($"Enemies destroyed: {killCount}");
 
-        if (killCount >= 2 && !audioSource.isPlaying)
+        if (killCount >= 2)
         {
             PlayKillStreakSound(killCount);
         }

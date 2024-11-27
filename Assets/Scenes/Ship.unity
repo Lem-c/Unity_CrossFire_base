@@ -1083,6 +1083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
+  - component: {fileID: 963194229}
   m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1160,6 +1161,102 @@ Transform:
   - {fileID: 718686801}
   m_Father: {fileID: 1628502391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &963194229
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &978413132 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 733465885859093308, guid: 61b1dcac9cc51bc4dbc9046e42266b85, type: 3}
@@ -1283,7 +1380,7 @@ GameObject:
   - component: {fileID: 1628502397}
   - component: {fileID: 1628502399}
   - component: {fileID: 1628502400}
-  - component: {fileID: 1628502398}
+  - component: {fileID: 1628502401}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1429,7 +1526,53 @@ MonoBehaviour:
   maxHealth: 100
   maxArmor: 0
   healthView: 0
---- !u!82 &1628502398
+--- !u!114 &1628502399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628502387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cbc81c42d84eaa4790d6a2d513a4981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepAudioSource: {fileID: 963194229}
+  footstepInterval: 0.3
+  defaultFootStepClips:
+  - {fileID: 8300000, guid: 9d7b3529996192245a6330aef928155d, type: 3}
+  - {fileID: 8300000, guid: 8d1058e1ed92458419abeaad6ac83089, type: 3}
+  - {fileID: 8300000, guid: 595da61d03e576f40acd5c316ae9e4c9, type: 3}
+  - {fileID: 8300000, guid: 184026895c02e4640b3892a545be44b4, type: 3}
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  footstepSounds: []
+--- !u!114 &1628502400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628502387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 750d624a70b78a847a06c989d97a7159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crouchHeight: 1.5
+  normalHeight: 2.5
+  crouchTransitionSpeed: 10
+  stepOverHeight: 3.5
+  weaponSlots:
+  - {fileID: 900880068}
+  - {fileID: 633260025}
+  - {fileID: 718686803}
+  - {fileID: 718686803}
+  modelCenter: {fileID: 1628502391}
+  currentWeapon: {fileID: 0}
+--- !u!82 &1628502401
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1440,7 +1583,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1525,52 +1668,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1628502399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1628502387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cbc81c42d84eaa4790d6a2d513a4981, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  footstepAudioSource: {fileID: 1628502398}
-  footstepInterval: 0.34
-  defaultFootStepClips:
-  - {fileID: 8300000, guid: 9d7b3529996192245a6330aef928155d, type: 3}
-  - {fileID: 8300000, guid: 8d1058e1ed92458419abeaad6ac83089, type: 3}
-  - {fileID: 8300000, guid: 595da61d03e576f40acd5c316ae9e4c9, type: 3}
-  - {fileID: 8300000, guid: 184026895c02e4640b3892a545be44b4, type: 3}
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  footstepSounds: []
---- !u!114 &1628502400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1628502387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 750d624a70b78a847a06c989d97a7159, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crouchHeight: 1.5
-  normalHeight: 2.5
-  crouchTransitionSpeed: 10
-  stepOverHeight: 3.5
-  weaponSlots:
-  - {fileID: 900880068}
-  - {fileID: 633260025}
-  - {fileID: 718686803}
-  - {fileID: 0}
-  modelCenter: {fileID: 1628502391}
-  currentWeapon: {fileID: 0}
 --- !u!1 &1644018839
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,13 +21,14 @@ public class FootStepAudioPlayer : MonoBehaviour
     public List<FootstepSound> footstepSounds = new List<FootstepSound>();
 
     // Reference to the PlayerMovement script
-    private PlayerMovement playerMovement;
+    private PlayerController playerController;
 
     private void Start()
     {
         // Get the PlayerMovement component from the same GameObject or specify the player GameObject
-        playerMovement = GetComponent<PlayerMovement>();
-        if (playerMovement == null)
+        playerController = GetComponent<PlayerController>();
+
+        if (playerController == null)
         {
             Debug.LogError("PlayerMovement component not found on the GameObject.");
         }
@@ -40,11 +41,11 @@ public class FootStepAudioPlayer : MonoBehaviour
 
     private void HandleFootsteps()
     {
-        if (playerMovement == null)
+        if (playerController == null)
             return;
 
         // Only play footstep sounds when the player is moving and grounded
-        if (playerMovement.IsGrounded() && playerMovement.IsMoving())
+        if (playerController.IsGrounded() && playerController.IsMoving())
         {
             footstepTimer += Time.deltaTime;
 
@@ -59,7 +60,7 @@ public class FootStepAudioPlayer : MonoBehaviour
                 interval *= 1.2f; // Slightly slower when moving silently
             }*/
 
-            if (footstepTimer >= interval && !playerMovement.IsCrouching() && !playerMovement.IsSilentMoving())
+            if (footstepTimer >= interval && !playerController.IsCrouching() && !playerController.IsSilentMoving())
             {
                 // Reset the timer
                 footstepTimer = 0f;

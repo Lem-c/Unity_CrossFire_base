@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574252ccb068a564db39953ba1b5e690, type: 3}
   m_Name: AK47_Beast
   m_EditorClassIdentifier: 
-  weaponName: AK47-Beast
+  weaponName: AK47_Beast
   weaponType: 1
   maxAmmo: 35
   fireRate: 0.2
-  reloadTime: 2.53
+  reloadTime: 2.13
   bulletPrefab: {fileID: 6443470745177156973, guid: 876b1af6868c5ee46b8b5053cd1c3e25, type: 3}
   animatorOverride: {fileID: 0}

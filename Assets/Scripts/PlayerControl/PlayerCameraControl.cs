@@ -14,6 +14,8 @@ public class PlayerCameraControl : MonoBehaviour
 
     private Vector3 originalCameraPosition;
 
+    private PlayerController playerController;
+
     private void Start()
     {
         // Lock the cursor to the center of the screen
@@ -21,6 +23,9 @@ public class PlayerCameraControl : MonoBehaviour
         Cursor.visible = false;
 
         originalCameraPosition = playerCamera.transform.localPosition;
+        playerController = GetComponent<PlayerController>();
+
+        if (playerController == null) { Debug.LogError("Assgin player controller!"); }
     }
 
     private void Update()
@@ -48,7 +53,7 @@ public class PlayerCameraControl : MonoBehaviour
     private void HandleCrouchCameraEffect()
     {
         // Check if the player is crouching using the PlayerMovement static method
-        bool isCrouching = PlayerMovement.GetIsCrouching();
+        bool isCrouching = playerController != null && playerController.IsCrouching();
 
         // Set the target camera position based on crouching
         Vector3 targetPosition = isCrouching ? originalCameraPosition + new Vector3(0f, crouchCameraOffset, 0f) : originalCameraPosition;

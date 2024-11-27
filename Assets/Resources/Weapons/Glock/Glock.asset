@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574252ccb068a564db39953ba1b5e690, type: 3}
   m_Name: Glock
   m_EditorClassIdentifier: 
-  weaponName: Glock-18
+  weaponName: glock
   weaponType: 0
   maxAmmo: 20
-  fireRate: 0.3
+  fireRate: 0.31
   reloadTime: 2.792
+  savedLocalPosition: {x: 0, y: 0, z: 0}
+  savedLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+  savedLocalScale: {x: -0.1, y: 0.1, z: 0.1}
   bulletPrefab: {fileID: 6443470745177156973, guid: 16adbb889600c43419e348ae993d49a2, type: 3}
   animatorOverride: {fileID: 0}

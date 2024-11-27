@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -14,8 +15,10 @@ public class PlayerController : MonoBehaviour
     public float crouchHeight = 1.5f;
     public float normalHeight = 2.5f;
     public float crouchTransitionSpeed = 10f;
+    public float stepOverHeight = 0.5f;
 
     // Player state parameters
+    private float currentHeight;
     private float horizontalInput;
     private float verticalInput;
     private bool isJumping;
@@ -31,7 +34,10 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
+        currentHeight = normalHeight;
+
         OnBagInitialized();
+
         if (weaponSlots[0] != null)
         {
             SwitchWeapon(weaponSlots[0]);
@@ -88,6 +94,8 @@ public class PlayerController : MonoBehaviour
         }
         moveDirection.y -= gravity * Time.deltaTime;
 
+        HandleStepOver();
+
         characterController.Move(moveDirection * Time.deltaTime);
     }
 
@@ -101,10 +109,37 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void HandleStepOver()
+    {
+        // Check for obstacles to step over
+        Vector3 rayOriginLow = new Vector3(transform.position.x, transform.position.y - currentHeight - 1f, transform.position.z);
+        Vector3 rayOriginHigh = new Vector3(transform.position.x, transform.position.y - currentHeight - 1f + stepOverHeight / 2, transform.position.z);
+        float rayLength = 2f; // Length of ray to check obstacles in front of player
+
+        RaycastHit hitLow;
+        RaycastHit hitHigh;
+
+        if (Physics.Raycast(rayOriginLow, transform.forward, out hitLow, rayLength))
+        {
+            // Check if obstacle height is low enough to step over
+            if (hitLow.collider != null)
+            {
+                // Check if there's no obstacle blocking the higher ray
+                if (!Physics.Raycast(rayOriginHigh, transform.forward, out hitHigh, rayLength))
+                {
+                    if(!isGrounded) { return; }
+                    if(verticalInput == 0 && horizontalInput == 0) { return; }
+
+                    moveDirection.y = jumpForce * 0.5f; // A small hop to cross the step
+                }
+            }
+        }
+    }
+
     private void HandleCrouchHeight()
     {
-        float targetHeight = isCrouching ? crouchHeight : normalHeight;
-        characterController.height = Mathf.Lerp(characterController.height, targetHeight, Time.deltaTime * crouchTransitionSpeed);
+        currentHeight = isCrouching ? crouchHeight : normalHeight;
+        characterController.height = Mathf.Lerp(characterController.height, currentHeight, Time.deltaTime * crouchTransitionSpeed);
     }
 
     private void HandleWeaponSwitching()
@@ -190,11 +225,11 @@ public class PlayerController : MonoBehaviour
             string weaponName = weaponToDrop.weaponManifest.weaponName;
             string groundWeaponName = "Ground_" + weaponName;
 
-            GameObject weaponPrefab = WeaponStorage.Instance.GetWeaponModelByName(groundWeaponName);
+            GameObject weaponPrefab = WeaponStorage.Instance.GetDroppedWeaponModelByName(groundWeaponName);
             if (weaponPrefab != null)
             {
                 Vector3 dropPosition = modelCenter.position + modelCenter.forward * 1.0f + Vector3.up * 5f;
-                Quaternion dropRotation = Quaternion.Euler(0, 0, 90);
+                Quaternion dropRotation = Quaternion.Euler(0, 90, 90);
 
                 GameObject droppedWeapon = Instantiate(weaponPrefab, dropPosition, dropRotation);
                 droppedWeapon.name = groundWeaponName;
@@ -208,7 +243,7 @@ public class PlayerController : MonoBehaviour
                 rb.useGravity = true;
 
                 Vector3 throwDirection = modelCenter.forward + Vector3.up * 0.5f;
-                float throwForce = 40f;
+                float throwForce = 100f;
                 rb.AddForce(throwDirection.normalized * throwForce, ForceMode.Impulse);
             }
         }

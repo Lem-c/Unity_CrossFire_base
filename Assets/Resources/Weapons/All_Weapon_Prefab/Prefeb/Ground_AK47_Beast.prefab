@@ -97,7 +97,13 @@ PrefabInstance:
       addedObject: {fileID: 3581881252399613890}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a260a47e6485ea548b63fa05a27e5aba, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2753239366204397353}
+      addedObject: {fileID: 2292036887457960466}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a260a47e6485ea548b63fa05a27e5aba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1983887873673193640}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a260a47e6485ea548b63fa05a27e5aba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5528037038076733582}
   m_SourcePrefab: {fileID: 100100000, guid: a260a47e6485ea548b63fa05a27e5aba, type: 3}
 --- !u!1 &8219658623114626658 stripped
 GameObject:
@@ -131,7 +137,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &2753239366204397353
+--- !u!65 &2292036887457960466
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,5 +156,41 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 20, y: 40, z: 170}
+  m_Size: {x: 20, y: 30, z: 150}
   m_Center: {x: -25, y: 0, z: 0}
+--- !u!65 &1983887873673193640
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8219658623114626658}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 90, y: 100, z: 185}
+  m_Center: {x: -15, y: 0, z: 0}
+--- !u!114 &5528037038076733582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8219658623114626658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb134da253ad45e448c799181a37f35b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupRange: 10
+  weaponSlotIndex: 0
+  weaponName: AK47_Beast

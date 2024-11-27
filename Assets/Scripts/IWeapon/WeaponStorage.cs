@@ -5,6 +5,7 @@ public class WeaponStorage : MonoBehaviour
 {
     public static WeaponStorage Instance;
     public List<GameObject> groundWeaponModels;
+    public List<GameObject> WeaponModels;
 
     void Awake()
     {
@@ -18,13 +19,26 @@ public class WeaponStorage : MonoBehaviour
         }
     }
 
-    public GameObject GetWeaponModelByName(string weaponName)
+    public GameObject GetDroppedWeaponModelByName(string weaponName)
     {
         foreach (GameObject weaponModel in groundWeaponModels)
         {
             if (weaponModel.name == weaponName)
             {
-                Debug.Log(weaponModel.name);
+                Debug.Log(weaponName);
+                return weaponModel;
+            }
+        }
+        return null;
+    }
+
+    public GameObject GetWeaponModelByName(string weaponName)
+    {
+        foreach (GameObject weaponModel in WeaponModels)
+        {
+            if (weaponModel.name == weaponName)
+            {
+                Debug.Log(weaponName);
                 return weaponModel;
             }
         }

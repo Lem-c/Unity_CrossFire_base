@@ -12,6 +12,12 @@ public class Weapon : ScriptableObject
     public float fireRate;
     public float reloadTime;
 
+    // Saved position info (x, y, z) for the weapon
+    public Vector3 savedLocalPosition;
+    // Saved rotation info for the weapon
+    public Quaternion savedLocalRotation;
+    public Vector3 savedLocalScale;
+
     // Single bullet prefab for all weapon types
     public GameObject bulletPrefab;
 

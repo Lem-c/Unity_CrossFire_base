@@ -15,7 +15,10 @@ MonoBehaviour:
   weaponName: AK47_Beast
   weaponType: 1
   maxAmmo: 35
-  fireRate: 0.2
+  fireRate: 0.18
   reloadTime: 2.13
+  savedLocalPosition: {x: 0, y: 0, z: 1.5}
+  savedLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+  savedLocalScale: {x: -0.05, y: 0.05, z: 0.05}
   bulletPrefab: {fileID: 6443470745177156973, guid: 876b1af6868c5ee46b8b5053cd1c3e25, type: 3}
   animatorOverride: {fileID: 0}

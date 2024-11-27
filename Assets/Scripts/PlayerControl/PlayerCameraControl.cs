@@ -11,6 +11,9 @@ public class PlayerCameraControl : MonoBehaviour
     public float crouchTransitionSpeed = 10f; // Speed of the camera transition when crouching
 
     private float xRotation = 0f;
+    private Vector3 currentRecoil; // Current recoil offset
+    private float currentVerticalRecoil = 0f; // Current accumulated vertical recoil
+    private Vector3 targetRecoil;  // Target recoil offset
 
     private Vector3 originalCameraPosition;
 
@@ -25,13 +28,16 @@ public class PlayerCameraControl : MonoBehaviour
         originalCameraPosition = playerCamera.transform.localPosition;
         playerController = GetComponent<PlayerController>();
 
-        if (playerController == null) { Debug.LogError("Assgin player controller!"); }
+        if (playerController == null) { Debug.LogError("Assign player controller!"); }
     }
 
     private void Update()
     {
         HandleMouseLook();
         HandleCrouchCameraEffect();
+
+        ApplyRecoil();
+        HandleRecoilRecover();
     }
 
     private void HandleMouseLook()
@@ -41,7 +47,7 @@ public class PlayerCameraControl : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
         // Rotate the camera up and down
-        xRotation -= mouseY;
+        xRotation -= mouseY; // Adjust pitch
         xRotation = Mathf.Clamp(xRotation, -90f, 90f); // Clamp the rotation to avoid over-rotation
 
         playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
@@ -52,7 +58,7 @@ public class PlayerCameraControl : MonoBehaviour
 
     private void HandleCrouchCameraEffect()
     {
-        // Check if the player is crouching using the PlayerMovement static method
+        // Check if the player is crouching using the PlayerController
         bool isCrouching = playerController != null && playerController.IsCrouching();
 
         // Set the target camera position based on crouching
@@ -60,5 +66,47 @@ public class PlayerCameraControl : MonoBehaviour
 
         // Smoothly move the camera to the target position
         playerCamera.transform.localPosition = Vector3.Lerp(playerCamera.transform.localPosition, targetPosition, Time.deltaTime * crouchTransitionSpeed);
+    }
+
+    private void ApplyRecoil()
+    {
+        if (Input.GetMouseButton(0) && playerController.currentWeapon.IsFiring())
+        {
+            float verticalRecoil = playerController.currentWeapon.weaponManifest.verticalRecoil;
+            float horizontalRecoil = playerController.currentWeapon.weaponManifest.horizontalRecoil;
+            float growthRate = playerController.currentWeapon.weaponManifest.recoilGrowthRate;
+
+            // Incrementally increase vertical recoil within the maximum bounds
+            currentVerticalRecoil = Mathf.Min(currentVerticalRecoil + growthRate * Time.deltaTime, verticalRecoil);
+
+            Debug.Log("Current Vertical Recoil: " + currentVerticalRecoil);
+
+            float recoilX = Random.Range(-horizontalRecoil, horizontalRecoil); // Horizontal
+            float recoilY = Random.Range(0f, currentVerticalRecoil);          // Vertical
+
+            // Add to target recoil
+            targetRecoil += new Vector3(recoilY, recoilX, 0);
+        }
+    }
+
+    private void HandleRecoilRecover()
+    {
+        // Smoothly apply recoil
+        currentRecoil = Vector3.Lerp(currentRecoil, targetRecoil, Time.deltaTime * 10f);
+
+        // Apply to camera rotation
+        xRotation -= currentRecoil.x; // Apply vertical recoil to pitch
+        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, currentRecoil.y, 0); // Apply horizontal recoil
+
+        float recoilResetSpeed = playerController.currentWeapon.weaponManifest.recoilResetSpeed;
+
+        // Gradually reset the recoil
+        targetRecoil = Vector3.Lerp(targetRecoil, Vector3.zero, Time.deltaTime * recoilResetSpeed);
+
+        // Reset the accumulated recoil when no longer firing
+        if (!Input.GetMouseButton(0))
+        {
+            currentVerticalRecoil = Mathf.Lerp(currentVerticalRecoil, 0, Time.deltaTime * recoilResetSpeed);
+        }
     }
 }

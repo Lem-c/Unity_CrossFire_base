@@ -12,6 +12,12 @@ public class Weapon : ScriptableObject
     public float fireRate;
     public float reloadTime;
 
+    // Recoil properties
+    public float verticalRecoil;
+    public float horizontalRecoil;
+    public float recoilGrowthRate;
+    public float recoilResetSpeed;
+
     // Saved position info (x, y, z) for the weapon
     public Vector3 savedLocalPosition;
     // Saved rotation info for the weapon

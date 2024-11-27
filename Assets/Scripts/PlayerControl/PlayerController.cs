@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     [Header("Weapon Settings")]
     public WeaponController[] weaponSlots = new WeaponController[4];
     public Transform modelCenter;
-    private WeaponController currentWeapon = null;
+    public WeaponController currentWeapon = null;
 
     private void Start()
     {
@@ -52,10 +52,10 @@ public class PlayerController : MonoBehaviour
         HandleCrouchHeight();
         HandleWeaponSwitching();
         HandleWeaponDrop();
-        if (currentWeapon != null)
+        /*if (currentWeapon != null)
         {
             currentWeapon.HandleWeaponInput();
-        }
+        }*/
     }
 
     private void GetInput()

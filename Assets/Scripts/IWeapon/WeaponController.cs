@@ -36,7 +36,7 @@ public class WeaponController : MonoBehaviour
         InitializeWeapon();
     }
 
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         HandleWeaponInput();
         HandleAnimationInput();
@@ -203,6 +203,8 @@ public class WeaponController : MonoBehaviour
             StartCoroutine(ReloadCoroutine());
         }
     }
+
+    public bool IsFiring() { return isFiring; }
 
     protected virtual IEnumerator ReloadCoroutine()
     {

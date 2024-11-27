@@ -190,6 +190,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &743675301 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6112241336227845770, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+  m_PrefabInstance: {fileID: 5398588739708674146}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1018166108
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,6 +387,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1342455528 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 292651274723556936, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+  m_PrefabInstance: {fileID: 5398588739708674146}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5398588739708674146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -384,6 +406,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 328447481116163143, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: characterImage
+      value: 
+      objectReference: {fileID: 743675301}
+    - target: {fileID: 328447481116163143, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: lowHealthImage
+      value: 
+      objectReference: {fileID: 1342455528}
     - target: {fileID: 1269639326423714076, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -467,6 +497,30 @@ PrefabInstance:
     - target: {fileID: 5712000856744535106, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
       propertyPath: m_Name
       value: MainUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5851018454830999219, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5851018454830999219, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b0d035822774dc942a286b2c00567024, type: 3}
+    - target: {fileID: 6220269262130506502, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 6220269262130506502, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 6220269262130506502, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6220269262130506502, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

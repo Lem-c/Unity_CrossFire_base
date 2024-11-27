@@ -1570,6 +1570,7 @@ MonoBehaviour:
   - {fileID: 718686803}
   - {fileID: 0}
   modelCenter: {fileID: 1628502391}
+  currentWeapon: {fileID: 0}
 --- !u!1 &1644018839
 GameObject:
   m_ObjectHideFlags: 0

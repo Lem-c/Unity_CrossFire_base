@@ -6,7 +6,7 @@ public class FootStepAudioPlayer : MonoBehaviour
 {
     [Header("Footstep Settings")]
     public AudioSource footstepAudioSource;
-    public float footstepInterval = 0.5f; // Time between footsteps
+    public float footstepInterval = 0.05f; // Time between footsteps
     public List<AudioClip> defaultFootStepClips = new List<AudioClip>();
     private float footstepTimer;
 
@@ -51,14 +51,6 @@ public class FootStepAudioPlayer : MonoBehaviour
 
             // Adjust the footstep interval based on movement speed
             float interval = footstepInterval;
-            /* if (playerMovement.IsCrouching())
-            {
-                interval *= 1.5f; // Slower footsteps when crouching
-            }
-            else if (playerMovement.IsSilentMoving())
-            {
-                interval *= 1.2f; // Slightly slower when moving silently
-            }*/
 
             if (footstepTimer >= interval && !playerController.IsCrouching() && !playerController.IsSilentMoving())
             {
@@ -73,6 +65,9 @@ public class FootStepAudioPlayer : MonoBehaviour
         {
             // Reset the timer when not moving
             footstepTimer = 0f;
+
+            // Ensure that no sound is played accidentally
+            footstepAudioSource.Stop();
         }
     }
 

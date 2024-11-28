@@ -151,6 +151,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  damage: 35
+  damage: 38
   markPrefab: {fileID: 3737717460431956057, guid: c6264631fb76c4b4787795735e8d8092, type: 3}
-  maxMarks: 30
+  maxMarks: 35

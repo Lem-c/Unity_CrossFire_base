@@ -8,6 +8,10 @@ public class KnifeWeaponController : WeaponController
     private Vector3 lastAttackPosition;
     private float lastAttackRadius;
 
+    // Time between consecutive attacks
+    [SerializeField] private float attackCooldown = 1.0f;
+    private float lastAttackTime;
+
     protected override void Start()
     {
         base.Start();
@@ -21,6 +25,9 @@ public class KnifeWeaponController : WeaponController
 
         isAttacking = false;
         isHeavy = false;
+
+        // Initialize to allow immediate first attack
+        lastAttackTime = -attackCooldown;
     }
 
     private void Update()
@@ -39,14 +46,14 @@ public class KnifeWeaponController : WeaponController
 
     public override void HandleWeaponInput()
     {
-        if (!isReloading && hasDrawnWeapon && !isDrawing)
+        if (!isReloading && hasDrawnWeapon && !isDrawing && Time.time >= lastAttackTime + attackCooldown)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0)) // Light attack
+            if (Input.GetKey(KeyCode.Mouse0)) // Light attack
             {
                 isAttacking = true;
                 HandleLightAttack();
             }
-            else if (Input.GetKeyDown(KeyCode.Mouse1)) // Heavy attack
+            else if (Input.GetKey(KeyCode.Mouse1)) // Heavy attack
             {
                 isAttacking = true;
                 HandleHeavyAttack();
@@ -62,10 +69,11 @@ public class KnifeWeaponController : WeaponController
 
         isHeavy = false;
         weaponAnimator.SetTrigger("LightAttack");
+        lastAttackTime = Time.time;
 
         // Duration to match animation
-        Invoke("PerformOverlapAttack", 0.2f); // Timing for when the attack hits
-        Invoke("EndAttack", 0.5f);
+        Invoke("PerformOverlapAttack", 0.1f); // Timing for when the attack hits
+        Invoke("EndAttack", 0.4f);
     }
 
     private void HandleHeavyAttack()
@@ -74,10 +82,11 @@ public class KnifeWeaponController : WeaponController
 
         isHeavy = true;
         weaponAnimator.SetTrigger("Stab");
+        lastAttackTime = Time.time;
 
         // Duration to match animation
         Invoke("PerformOverlapAttack", 0.8f); // Timing for when the attack hits
-        Invoke("EndAttack", 1.5f);
+        Invoke("EndAttack", 1.3f);
     }
 
     private void PerformOverlapAttack()

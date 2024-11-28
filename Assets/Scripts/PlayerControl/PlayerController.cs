@@ -197,7 +197,7 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded && isCrouching && !IsMoving()) {
             // increase weapon accuracy
-            currentMenifest.recoilResetSpeed = 1.5f * currentMenifest.maxRecoilResetSpeed;
+            currentMenifest.recoilResetSpeed = 2f * currentMenifest.maxRecoilResetSpeed;
         }
         else if (IsMoving())
         {

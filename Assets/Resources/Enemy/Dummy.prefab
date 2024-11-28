@@ -164,9 +164,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 56495d0ea743d954b962eb6c3a5d5912, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1204731606174977826}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 56495d0ea743d954b962eb6c3a5d5912, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5044870227941977348}
   m_SourcePrefab: {fileID: 100100000, guid: 56495d0ea743d954b962eb6c3a5d5912, type: 3}
 --- !u!4 &8335599151996629787 stripped
 Transform:
@@ -264,23 +261,3 @@ MonoBehaviour:
   maxHealth: 100
   maxArmor: 0
   healthView: 0
---- !u!114 &5044870227941977348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8711703234189601185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65969f3a664083d44a3a0532e924a944, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponManifest: {fileID: 11400000, guid: 8062dfab452351e4e996686537e4ac15, type: 2}
-  currentAmmo: 0
-  holder: {fileID: 3942135140141494703}
-  audioManager: {fileID: 0}
-  enemyState: {fileID: 0}
-  playerTransform: {fileID: 8714329876477248219}
-  detectionRange: 1000
-  rotationSpeed: 5

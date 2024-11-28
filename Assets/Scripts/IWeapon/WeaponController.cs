@@ -19,7 +19,7 @@ public class WeaponController : MonoBehaviour
     protected bool hasDrawnWeapon = false;
     protected bool isDrawing = false;
 
-    public static int displayAmmo;
+    public static string displayAmmo;
     public static string displayWeapon;
 
     // Public method to set Animator integer parameter
@@ -42,7 +42,7 @@ public class WeaponController : MonoBehaviour
         HandleAnimationInput();
 
         // UI update
-        displayAmmo = currentAmmo;
+        displayAmmo = currentAmmo.ToString();
         displayWeapon = weaponManifest.weaponName;
     }
 
@@ -63,7 +63,7 @@ public class WeaponController : MonoBehaviour
         isDrawing = true;
         StartCoroutine(WaitForDrawAnimation());
 
-        if (currentAmmo >= 0)
+        if (currentAmmo >= 0)   // equals zero seems counterintuitive, but for seek of knife class
         {
             SetState(new WeaponIdleState()); // Set initial state to Idle
         }
@@ -79,6 +79,7 @@ public class WeaponController : MonoBehaviour
         {
             if (hasDrawnWeapon && !isDrawing && Input.GetKey(KeyCode.Mouse0) && Time.time >= lastFireTime + weaponManifest.fireRate)
             {
+                if (!CanShoot()) { return; }
                 HandleShoot();
             }
             else if (hasDrawnWeapon && !isDrawing && Input.GetKey(KeyCode.R) && currentAmmo < weaponManifest.maxAmmo)
@@ -101,7 +102,7 @@ public class WeaponController : MonoBehaviour
         currentState.HandleState(this);
     }
 
-    private void HandleAnimationInput()
+    protected void HandleAnimationInput()
     {
         if (Input.GetKey(KeyCode.Mouse0) && !isReloading)
         {
@@ -205,6 +206,11 @@ public class WeaponController : MonoBehaviour
     }
 
     public bool IsFiring() { return isFiring; }
+
+    public virtual bool CanShoot()
+    {
+        return weaponManifest.weaponType != WeaponType.Knife;
+    }
 
     protected virtual IEnumerator ReloadCoroutine()
     {

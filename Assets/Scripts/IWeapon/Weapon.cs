@@ -20,6 +20,7 @@ public class Weapon : ScriptableObject
     public float horizontalRecoil;
     public float recoilGrowthRate;
     public float recoilResetSpeed;
+    public float maxRecoilResetSpeed;
     // Recoil pattern
     public Vector2[] recoilPattern;
 
@@ -41,5 +42,6 @@ public class Weapon : ScriptableObject
 public enum WeaponType
 {
     Pistol,
-    Rifle
+    Rifle, 
+    Knife
 }

@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
         GetInput();
         HandleMovement();
         HandleDifWeaponMoveSpeed();
+        HandleWeaponRecoilWhenMoving();
         HandleJump();
         HandleCrouchHeight();
         HandleWeaponSwitching();
@@ -190,6 +191,26 @@ public class PlayerController : MonoBehaviour
         currentWeapon = null;
     }
 
+    private void HandleWeaponRecoilWhenMoving()
+    {
+        Weapon currentMenifest = currentWeapon.weaponManifest;
+
+        if (isGrounded && isCrouching && !IsMoving()) {
+            // increase weapon accuracy
+            currentMenifest.recoilResetSpeed = 1.5f * currentMenifest.maxRecoilResetSpeed;
+        }
+        else if (IsMoving())
+        {
+            // decrease weapon accuracy
+            currentMenifest.recoilResetSpeed = 0.5f * currentMenifest.maxRecoilResetSpeed;
+        }
+        else
+        {
+            // recover weapon accuracy
+            currentMenifest.recoilResetSpeed = currentMenifest.maxRecoilResetSpeed;
+        }
+    }
+
     private void OnBagInitialized()
     {
         foreach (WeaponController weapon in weaponSlots)
@@ -259,6 +280,11 @@ public class PlayerController : MonoBehaviour
         else if (currentWeapon == weaponSlots[2] || currentWeapon == weaponSlots[3])
         {
             walkSpeed = maxSpeed;
+        }
+        else
+        {
+            walkSpeed = maxSpeed / (1f + 0.005f * (currentWeapon.weaponManifest.weight));
+
         }
     }
 

@@ -72,16 +72,31 @@ public class PlayerCameraControl : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && playerController.currentWeapon.IsFiring())
         {
-            float verticalRecoil = playerController.currentWeapon.weaponManifest.verticalRecoil;
-            float horizontalRecoil = playerController.currentWeapon.weaponManifest.horizontalRecoil;
-            float growthRate = playerController.currentWeapon.weaponManifest.recoilGrowthRate;
+            Weapon tempManifest = playerController.currentWeapon.weaponManifest;
+            float recoilX;
+            float recoilY;
 
-            // Incrementally increase vertical recoil within the maximum bounds
-            currentVerticalRecoil = Mathf.Min(currentVerticalRecoil + growthRate * Time.deltaTime, verticalRecoil);
+            if (tempManifest.recoilPattern.Length > 1)
+            {
+                int currentStep = tempManifest.maxAmmo + 1 - playerController.currentWeapon.currentAmmo;
+                currentStep = Mathf.Clamp(currentStep, 0, tempManifest.recoilPattern.Length - 1);
 
-            float recoilX = Random.Range(-horizontalRecoil, horizontalRecoil); // Horizontal
-            float recoilY = Random.Range(0f, verticalRecoil);          // Vertical
+                recoilX = tempManifest.recoilPattern[currentStep].x;
+                recoilY = tempManifest.recoilPattern[currentStep].y;
+            }
+            else
+            {
+                float verticalRecoil = tempManifest.verticalRecoil;
+                float horizontalRecoil = tempManifest.horizontalRecoil;
+                float growthRate = tempManifest.recoilGrowthRate;
 
+                // Incrementally increase vertical recoil within the maximum bounds
+                currentVerticalRecoil = Mathf.Min(currentVerticalRecoil + growthRate * Time.deltaTime, verticalRecoil);
+
+                recoilX = Random.Range(-horizontalRecoil, horizontalRecoil); // Horizontal
+                recoilY = Random.Range(0f, verticalRecoil);          // Vertical
+
+            }
             // Add to target recoil
             targetRecoil += new Vector3(recoilY, recoilX, 0);
         }

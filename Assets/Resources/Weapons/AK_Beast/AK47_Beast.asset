@@ -15,13 +15,33 @@ MonoBehaviour:
   weaponName: AK47_Beast
   weaponType: 1
   maxAmmo: 35
-  fireRate: 0.18
+  fireRate: 0.1
   reloadTime: 2.13
   weight: 40
   verticalRecoil: 1.3
   horizontalRecoil: 0.6
   recoilGrowthRate: 0.1
   recoilResetSpeed: 5
+  recoilPattern:
+  - {x: 0, y: 0}
+  - {x: -1, y: 0.15}
+  - {x: -0.03, y: 0.3}
+  - {x: 0.14, y: 0.39}
+  - {x: 0.09, y: 0.46}
+  - {x: 0.13, y: 0.89}
+  - {x: 0.4, y: 0.95}
+  - {x: 0.35, y: 0.95}
+  - {x: 0.46, y: 0.95}
+  - {x: 0.28, y: 0.95}
+  - {x: 0.28, y: 0.91}
+  - {x: 0.28, y: 0.93}
+  - {x: 0.35, y: 1}
+  - {x: -0.3, y: 1.05}
+  - {x: -0.3, y: 0.95}
+  - {x: -0.28, y: 0.95}
+  - {x: -0.25, y: 0.95}
+  - {x: -0.3, y: 0.95}
+  - {x: -0.26, y: 0.95}
   savedLocalPosition: {x: 0, y: 0, z: 1.5}
   savedLocalRotation: {x: 0, y: 0, z: 0, w: 0}
   savedLocalScale: {x: -0.05, y: 0.05, z: 0.05}

@@ -20,6 +20,8 @@ public class Weapon : ScriptableObject
     public float horizontalRecoil;
     public float recoilGrowthRate;
     public float recoilResetSpeed;
+    // Recoil pattern
+    public Vector2[] recoilPattern;
 
     // Saved position info (x, y, z) for the weapon
     public Vector3 savedLocalPosition;

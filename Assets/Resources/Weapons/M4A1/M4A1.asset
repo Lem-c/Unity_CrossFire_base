@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: M4A1
   weaponType: 1
   maxAmmo: 30
-  fireRate: 0.15
+  fireRate: 0.08
   reloadTime: 3.19
   weight: 35
   verticalRecoil: 0.2

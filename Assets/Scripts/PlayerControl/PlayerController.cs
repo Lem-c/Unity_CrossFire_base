@@ -271,8 +271,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleDifWeaponMoveSpeed()
     {
-        if (weaponSlots == null || weaponSlots[0] == null ||
-            weaponSlots[1] == null || weaponSlots[3] == null) { return; }
+        if (currentWeapon == null) { return; }
         if (currentWeapon == weaponSlots[0])
         {
             walkSpeed = maxSpeed / (1 + 0.01f * (currentWeapon.weaponManifest.weight));

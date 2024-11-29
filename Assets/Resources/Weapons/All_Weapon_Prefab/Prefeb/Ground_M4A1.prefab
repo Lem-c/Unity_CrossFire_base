@@ -77,6 +77,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a2a682c660be22843bf4bbd34bdf51cf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2498699502629933295}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a2a682c660be22843bf4bbd34bdf51cf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7979296142948063875}
   m_SourcePrefab: {fileID: 100100000, guid: a2a682c660be22843bf4bbd34bdf51cf, type: 3}
 --- !u!1 &6595188589636373094 stripped
 GameObject:
@@ -140,3 +143,30 @@ MonoBehaviour:
   pickupRange: 5
   weaponSlotIndex: 0
   weaponName: M4A1
+--- !u!54 &-7979296142948063875
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6595188589636373094}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

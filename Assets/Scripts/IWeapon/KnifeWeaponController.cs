@@ -72,7 +72,7 @@ public class KnifeWeaponController : WeaponController
         lastAttackTime = Time.time;
 
         // Duration to match animation
-        Invoke("PerformOverlapAttack", 0.1f); // Timing for when the attack hits
+        Invoke("PerformOverlapAttack", 0.05f); // Timing for when the attack hits
         Invoke("EndAttack", 0.4f);
     }
 

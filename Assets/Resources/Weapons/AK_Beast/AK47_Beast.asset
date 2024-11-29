@@ -21,8 +21,8 @@ MonoBehaviour:
   verticalRecoil: 1.3
   horizontalRecoil: 0.6
   recoilGrowthRate: 0.05
-  recoilResetSpeed: 2
-  maxRecoilResetSpeed: 2
+  recoilResetSpeed: 8
+  maxRecoilResetSpeed: 8
   recoilPattern:
   - {x: 0, y: 0}
   - {x: -1, y: 0.15}

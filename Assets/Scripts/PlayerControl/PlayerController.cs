@@ -27,8 +27,13 @@ public class PlayerController : MonoBehaviour
     private bool isSilentMoving;
     private bool isGrounded;
 
-    [Header("Weapon Settings")]
+    // player bagpack
+    public Bag playerBag;
+    private bool isSelectingBag = false;
+
+
     public WeaponController[] weaponSlots = new WeaponController[4];
+    [Header("Weapon Settings")]
     public Transform modelCenter;
     public WeaponController currentWeapon = null;
 
@@ -40,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
         OnBagInitialized();
 
+        // Select main weapon auto
         if (weaponSlots[0] != null)
         {
             SwitchWeapon(weaponSlots[0]);
@@ -55,6 +61,7 @@ public class PlayerController : MonoBehaviour
         HandleJump();
         HandleCrouchHeight();
         HandleWeaponSwitching();
+        HandleBagSwitch();
         HandleWeaponDrop();
     }
 
@@ -166,8 +173,8 @@ public class PlayerController : MonoBehaviour
     private void DropWeapon(WeaponController weaponToDrop)
     {
         CreateDroppedWeaponPrefab(weaponToDrop);
-        weaponToDrop.gameObject.SetActive(false);
-        weaponToDrop.transform.position = transform.position + transform.forward;
+        Destroy(weaponToDrop.gameObject);
+
         for (int i = 0; i < weaponSlots.Length; i++)
         {
             if (weaponSlots[i] == weaponToDrop)
@@ -211,17 +218,58 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void HandleBagSwitch()
+    {
+        if (playerBag.canSwitchBag && Input.GetKeyDown(KeyCode.B))
+        {
+            isSelectingBag = true;
+        }
+
+        // Handle bag selection if in selection mode
+        if (isSelectingBag)
+        {
+            // playerBag.SelectBag();
+            foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
+            {
+                if (Input.GetKeyDown(key))
+                {
+                    // Attempt to parse the key name as an integer
+                    if (int.TryParse(key.ToString().Replace("Alpha", ""), out int keyNumber))
+                    {
+                        int bagIndex = keyNumber - 1;
+                        playerBag.SelectBag(bagIndex);
+                        OnBagInitialized();
+
+                        if (weaponSlots[0] != null)
+                        {
+                            SwitchWeapon(weaponSlots[0]);
+                        }
+
+                        isSelectingBag = false;
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
     private void OnBagInitialized()
     {
+        weaponSlots = playerBag.GetCurrentBagWeapons();
+
         foreach (WeaponController weapon in weaponSlots)
         {
             if (weapon != null)
             {
                 weapon.gameObject.SetActive(false);
             }
+            else
+            {
+                Debug.LogError("One / many weapon slots is empty!");
+            }
         }
     }
-
+    
     private void SwitchWeapon(WeaponController newWeapon)
     {
         if (currentWeapon != null)

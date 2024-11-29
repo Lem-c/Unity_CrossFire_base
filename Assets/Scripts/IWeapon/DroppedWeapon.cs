@@ -8,7 +8,7 @@ public class DroppedWeapon : MonoBehaviour
     public float pickupRange = 4.0f; // Range within which player can pick up the weapon
 
     [Header("Weapon Settings")]
-    public int weaponSlotIndex; // Weapon type index: 0 - Rifle, 1 - Pistol, 2 - Shotgun, 3 - Grenade
+    public int weaponSlotIndex; // Weapon type index: 0 - Main, 1 - Pistol, 2 - Knife, 3 - Grenade
     public string weaponName; // Name of the weapon prefab
 
     private Transform playerTransform;
@@ -43,7 +43,7 @@ public class DroppedWeapon : MonoBehaviour
                 // Instantiate the weapon and assign it to the player's corresponding slot
                 GameObject weaponInstance = Instantiate(weaponPrefab);
 
-                Transform weaponCameraTransform = playerTransform.Find("Main Camera");
+                Transform weaponCameraTransform = playerTransform.Find("Main Camera/Weapons");
                 if (weaponCameraTransform != null)
                 {
                     weaponInstance.transform.SetParent(weaponCameraTransform);

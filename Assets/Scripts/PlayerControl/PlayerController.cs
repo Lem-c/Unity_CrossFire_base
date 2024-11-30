@@ -55,8 +55,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         GetInput();
-        currentWeapon.HandleWeaponInput();
-        currentWeapon.HandleAnimationInput();
         HandleMovement();
         HandleDifWeaponMoveSpeed();
         HandleWeaponRecoilWhenMoving();
@@ -65,6 +63,12 @@ public class PlayerController : MonoBehaviour
         HandleWeaponSwitching();
         HandleBagSwitch();
         HandleWeaponDrop();
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        currentWeapon.HandleWeaponInput();
+        currentWeapon.HandleAnimationInput();
     }
 
     private void GetInput()

@@ -5,17 +5,17 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     // Components
+    [SerializeField] private Animator animator;
+    [SerializeField] private EnemyState enemyState;
     private NavMeshAgent navMeshAgent;
-    private Animator animator;
     private Transform playerTransform;
-    private EnemyState enemyState;
+
 
     // Movement and AI parameters
     public float fieldOfView = 90f;
     public float viewDistance = 50f;
     public float attackRange = 30f;
-    public float turnSpeed = 5f;
-    public float health = 100f; // Enemy's health
+    public float turnSpeed = 10f;
 
     // Animation parameter hashes
     private int walkHash;
@@ -34,13 +34,13 @@ public class EnemyController : MonoBehaviour
     // Destination for the enemy to move to
     [SerializeField]
     private Transform destination;
+    [SerializeField]
+    private Transform weaponMountPoint;
 
     private void Start()
     {
         // Initialize components
         navMeshAgent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
-        enemyState = GetComponent<EnemyState>();
 
         // Find the player
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -76,9 +76,15 @@ public class EnemyController : MonoBehaviour
         if (playerTransform != null && CanSeePlayer())
         {
             AimAtPlayer();
+            // get aimed at player vector
+            Vector3 aimPoint = (playerTransform.position - weaponMountPoint.position).normalized;
+
             if (IsPlayerInAttackRange())
             {
-                AttackPlayer();
+                if (aimPoint != null)
+                {
+                    AttackPlayer(aimPoint);
+                }
             }
             else
             {
@@ -102,6 +108,10 @@ public class EnemyController : MonoBehaviour
             navMeshAgent.isStopped = false;
             isMoving = true;
         }
+        else
+        {
+            Debug.Log("Not on nav mesh");
+        }
     }
 
     public void StopMoving()
@@ -109,8 +119,8 @@ public class EnemyController : MonoBehaviour
         if (navMeshAgent.isOnNavMesh)
         {
             navMeshAgent.isStopped = true;
-            isMoving = false;
         }
+        isMoving = false;
     }
 
     public void Crouch(bool crouch)
@@ -151,6 +161,8 @@ public class EnemyController : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
 
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+
+        // TODO: check whether aimed at player
     }
 
     private bool IsPlayerInAttackRange()
@@ -159,7 +171,7 @@ public class EnemyController : MonoBehaviour
         return distance <= attackRange;
     }
 
-    private void AttackPlayer()
+    private void AttackPlayer(Vector3 aimPoint)
     {
         StopMoving();
 
@@ -169,7 +181,7 @@ public class EnemyController : MonoBehaviour
             {
                 if (Time.time >= lastFireTime + weapon.weaponManifest.fireRate)
                 {
-                    weapon.Shoot();
+                    weapon.Shoot(aimPoint);
                     weapon.audioManager.PlayFireSound();
                     // change last fire time
                     lastFireTime = Time.time;

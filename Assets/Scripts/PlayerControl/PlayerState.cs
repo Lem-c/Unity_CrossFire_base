@@ -9,10 +9,11 @@ public class PlayerState : MonoBehaviour, IDamageable
     public float maxArmor;
     public float healthView = 0;
     public float armorView = 0;
-    public Animator animator;
 
+    protected Animator animator;
     protected float currentHealth;
     protected float currentArmor;
+
     // How much percent of damage left
     private float armorLevel = 0.8f;
 
@@ -77,6 +78,7 @@ public class PlayerState : MonoBehaviour, IDamageable
             {
                 // Handle player death
                 animator.SetBool("isDie", true);
+                Debug.Log("Die!!");
             }
 
             if( gameObject.GetComponent< Collider>())

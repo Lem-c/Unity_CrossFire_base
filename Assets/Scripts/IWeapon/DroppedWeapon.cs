@@ -61,6 +61,7 @@ public class DroppedWeapon : MonoBehaviour
 
                 playerController.weaponSlots[weaponSlotIndex] = weaponController;
                 weaponController.gameObject.SetActive(false);
+                weaponController.holder = playerController.gameObject;
                 Destroy(gameObject); // Destroy the dropped weapon object after pickup
             }
         }

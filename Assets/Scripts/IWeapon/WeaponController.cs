@@ -139,7 +139,33 @@ public class WeaponController : MonoBehaviour
         }
     }
 
+    public virtual void Shoot(Vector3 aimPoint)
+    {
+        if (currentAmmo > 0)
+        {
+            currentAmmo--;
+
+            isFiring = true;
+
+            ShootBullet(aimPoint);
+            // change last fire time
+            lastFireTime = Time.time;
+        }
+    }
+
     protected virtual void ShootBullet()
+    {
+        if (holder.CompareTag("Player"))
+        {
+            ShootBulletFromCamera();
+        }
+        else
+        {
+            Debug.LogError("Holder is not tagged as Player. Use the overloaded method to pass an aimPoint.");
+        }
+    }
+
+    protected virtual void ShootBullet(Vector3 aimPoint)
     {
         if (weaponManifest.bulletPrefab == null)
         {
@@ -147,61 +173,67 @@ public class WeaponController : MonoBehaviour
             return;
         }
 
-        Vector3 bulletSpawnPosition;
-        Quaternion bulletSpawnRotation;
+        // Spawn position and direction for shooting
+        Vector3 bulletSpawnPosition = transform.position;
+        Quaternion bulletSpawnRotation = Quaternion.LookRotation((aimPoint).normalized);
 
-        if (holder.CompareTag("Player"))
-        {
-            // Shoot from camera for player
-            Camera playerCamera = Camera.main;
-            if (playerCamera != null)
-            {
-                bulletSpawnPosition = playerCamera.transform.position + playerCamera.transform.forward;
-                bulletSpawnRotation = playerCamera.transform.rotation;
-            }
-            else
-            {
-                Debug.LogError("No player camera found! Unable to spawn bullet.");
-                return;
-            }
-        }
-        else
-        {
-            // Shoot from the holder's front if it's not the player
-            Transform holderTransform = holder.transform;
+        InstantiateAndConfigureBullet(bulletSpawnPosition, bulletSpawnRotation);
+    }
 
-            // Spawn the bullet slightly in front of the holder
-            bulletSpawnPosition = holderTransform.position + holderTransform.forward * 1f;
-            bulletSpawnRotation = Quaternion.LookRotation(holderTransform.forward, Vector3.up);
+    private void ShootBulletFromCamera()
+    {
+        if (weaponManifest.bulletPrefab == null)
+        {
+            Debug.LogError("No bullet prefab defined in the weapon manifest!");
+            return;
         }
 
-        // Instantiate the single bullet prefab
-        GameObject bullet = Instantiate(weaponManifest.bulletPrefab, bulletSpawnPosition, bulletSpawnRotation);
-        if (bullet != null)
+        Camera playerCamera = Camera.main;
+        if (playerCamera == null)
         {
-            // Modify bullet behavior based on weapon type
-            switch (weaponManifest.weaponType)
-            {
-                case WeaponType.Pistol:
-                    PistolBullet pistolBullet = bullet.GetComponent<PistolBullet>();
-                    if (pistolBullet != null)
-                    {
-                        pistolBullet.SetShooter(holder != null ? holder : gameObject);
-                    }
-                    break;
+            Debug.LogError("No player camera found! Unable to spawn bullet.");
+            return;
+        }
 
-                case WeaponType.Rifle:
-                    RifleBullet rifleBullet = bullet.GetComponent<RifleBullet>();
-                    if (rifleBullet != null)
-                    {
-                        rifleBullet.SetShooter(holder != null ? holder : gameObject);
-                    }
-                    break;
+        // Spawn position and rotation from the camera's perspective
+        Vector3 bulletSpawnPosition = playerCamera.transform.position + playerCamera.transform.forward;
+        Quaternion bulletSpawnRotation = playerCamera.transform.rotation;
 
-                default:
-                    Debug.LogError($"Unsupported weapon type: {weaponManifest.weaponType}");
-                    break;
-            }
+        InstantiateAndConfigureBullet(bulletSpawnPosition, bulletSpawnRotation);
+    }
+
+    private void InstantiateAndConfigureBullet(Vector3 position, Quaternion rotation)
+    {
+        GameObject bullet = Instantiate(weaponManifest.bulletPrefab, position, rotation);
+
+        if (bullet == null)
+        {
+            Debug.LogError("Failed to instantiate the bullet.");
+            return;
+        }
+
+        // Configure bullet behavior based on weapon type
+        switch (weaponManifest.weaponType)
+        {
+            case WeaponType.Pistol:
+                PistolBullet pistolBullet = bullet.GetComponent<PistolBullet>();
+                if (pistolBullet != null)
+                {
+                    pistolBullet.SetShooter(holder != null ? holder : gameObject);
+                }
+                break;
+
+            case WeaponType.Rifle:
+                RifleBullet rifleBullet = bullet.GetComponent<RifleBullet>();
+                if (rifleBullet != null)
+                {
+                    rifleBullet.SetShooter(holder != null ? holder : gameObject);
+                }
+                break;
+
+            default:
+                Debug.LogError($"Unsupported weapon type: {weaponManifest.weaponType}");
+                break;
         }
     }
 

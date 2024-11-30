@@ -22,10 +22,11 @@ MonoBehaviour:
   horizontalRecoil: 0
   recoilGrowthRate: 0
   recoilResetSpeed: 0
+  maxRecoilResetSpeed: 0
   recoilPattern: []
   savedLocalPosition: {x: 0, y: 0, z: 0}
   savedLocalRotation: {x: 0, y: 0, z: 0, w: 0}
-  savedLocalScale: {x: 0, y: 0, z: 0}
+  savedLocalScale: {x: -1, y: 1, z: 1}
   bulletPrefab: {fileID: 0}
   animatorOverride: {fileID: 0}
   bladeLength: 5

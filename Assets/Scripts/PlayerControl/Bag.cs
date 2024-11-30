@@ -39,8 +39,16 @@ public class Bag : MonoBehaviour
             {
                 GameObject rifleInstance = Instantiate(riflePrefabs[i], weaponParent);
                 rifleInstance.SetActive(false);  // Ensure it's not active immediately
+
                 weaponSet[0] = rifleInstance.GetComponent<WeaponController>();
                 weaponSet[0].holder = topParent;
+
+                Weapon tempManifest = weaponSet[0].weaponManifest;
+                // Set transform
+                rifleInstance.transform.localPosition = tempManifest.savedLocalPosition;
+                rifleInstance.transform.localRotation = tempManifest.savedLocalRotation;
+                rifleInstance.transform.localScale = tempManifest.savedLocalScale;
+
             }
 
             // Add pistol
@@ -50,6 +58,12 @@ public class Bag : MonoBehaviour
                 pistolInstance.SetActive(false);  // Ensure it's not active immediately
                 weaponSet[1] = pistolInstance.GetComponent<WeaponController>();
                 weaponSet[1].holder = topParent;
+
+                Weapon tempManifest = weaponSet[1].weaponManifest;
+                // Set transform
+                pistolInstance.transform.localPosition = tempManifest.savedLocalPosition;
+                pistolInstance.transform.localRotation = tempManifest.savedLocalRotation;
+                pistolInstance.transform.localScale = tempManifest.savedLocalScale;
             }
 
             // Add knife
@@ -68,6 +82,12 @@ public class Bag : MonoBehaviour
                 grenadeInstance.SetActive(false);  // Ensure it's not active immediately
                 weaponSet[3] = grenadeInstance.GetComponent<WeaponController>();
                 weaponSet[3].holder = topParent;
+
+                Weapon tempManifest = weaponSet[2].weaponManifest;
+                // Set transform
+                grenadeInstance.transform.localPosition = tempManifest.savedLocalPosition;
+                grenadeInstance.transform.localRotation = tempManifest.savedLocalRotation;
+                grenadeInstance.transform.localScale = tempManifest.savedLocalScale;
             }
 
             bags.Add(weaponSet);

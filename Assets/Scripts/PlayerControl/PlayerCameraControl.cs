@@ -11,9 +11,11 @@ public class PlayerCameraControl : MonoBehaviour
     public float crouchTransitionSpeed = 10f; // Speed of the camera transition when crouching
 
     private float xRotation = 0f;
-    private Vector3 currentRecoil; // Current recoil offset
-    private float currentVerticalRecoil = 0f; // Current accumulated vertical recoil
-    private Vector3 targetRecoil;  // Target recoil offset
+    private Vector3 currentRecoil;                  // Current recoil offset
+    private float currentVerticalRecoil = 0f;       // Current accumulated vertical recoil
+    private Vector3 targetRecoil;                   // Target recoil offset
+
+    private int currentStep;                        // Current recoil pattern index
 
     private Vector3 originalCameraPosition;
 
@@ -78,12 +80,15 @@ public class PlayerCameraControl : MonoBehaviour
 
             if (tempManifest.recoilPattern.Length > 1)
             {
-                int currentStep = tempManifest.maxAmmo + 1 - playerController.currentWeapon.currentAmmo;
+                // comment this to avoid recoil pattern recovery
+                currentStep = tempManifest.maxAmmo + 1 - playerController.currentWeapon.currentAmmo;
+                
                 currentStep = Mathf.Clamp(currentStep, 0, tempManifest.recoilPattern.Length - 1);
 
                 recoilX = tempManifest.recoilPattern[currentStep].x;
                 recoilY = tempManifest.recoilPattern[currentStep].y;
-            }
+
+                }
             else
             {
                 float verticalRecoil = tempManifest.verticalRecoil;

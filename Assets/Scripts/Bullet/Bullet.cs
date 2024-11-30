@@ -115,8 +115,7 @@ public abstract class Bullet : MonoBehaviour
         {
             float distanceTravelled = Vector3.Distance(startPosition, transform.position);
             float calculatedDamage = CalculateDamage(distanceTravelled);
-            target.TakeDamage(calculatedDamage, true);
-            Debug.Log($"Damage dealt to {collider.gameObject.name} of {calculatedDamage}");
+            target.TakeDamage(calculatedDamage, false);
         }
 
         if (collider.gameObject.layer == LayerMask.NameToLayer("Map"))

@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         GetInput();
+        currentWeapon.HandleWeaponInput();
+        currentWeapon.HandleAnimationInput();
         HandleMovement();
         HandleDifWeaponMoveSpeed();
         HandleWeaponRecoilWhenMoving();
@@ -204,7 +206,7 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded && isCrouching && !IsMoving()) {
             // increase weapon accuracy
-            currentMenifest.recoilResetSpeed = 2f * currentMenifest.maxRecoilResetSpeed;
+            currentMenifest.recoilResetSpeed = 4f * currentMenifest.maxRecoilResetSpeed;
         }
         else if (IsMoving())
         {

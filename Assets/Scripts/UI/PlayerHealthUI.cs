@@ -25,7 +25,7 @@ public class PlayerStateUI : MonoBehaviour
     void Update()
     {
         float currentHealthRate = playerState.getCurrentHealth() / playerState.maxHealth; ;
-        if (currentHealthRate < 0.2)
+        if (currentHealthRate < 0.35)
         {
             lowHealthImage.fillAmount = currentHealthRate;
             characterImage.fillAmount = 0f;

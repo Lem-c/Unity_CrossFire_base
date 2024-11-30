@@ -5,12 +5,16 @@ using UnityEngine;
 public class PlayerState : MonoBehaviour, IDamageable
 {
     [SerializeField]
-    public float maxHealth = 100f;
-    public float maxArmor = 0;
+    public float maxHealth;
+    public float maxArmor;
     public float healthView = 0;
+    public float armorView = 0;
+    public Animator animator;
 
     protected float currentHealth;
     protected float currentArmor;
+    // How much percent of damage left
+    private float armorLevel = 0.8f;
 
     public float getCurrentHealth()
     {
@@ -26,11 +30,15 @@ public class PlayerState : MonoBehaviour, IDamageable
     {
         currentHealth = maxHealth;
         currentArmor = maxArmor;
+
+        // get animator
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         healthView = getCurrentHealth();
+        armorView = getCurrentArmor();
     }
 
     // Method to take damage
@@ -38,7 +46,7 @@ public class PlayerState : MonoBehaviour, IDamageable
     {
         if (currentArmor > 0)
         {
-            float remainingDamage = damage - currentArmor;
+            float remainingDamage = armorLevel * damage;
             currentArmor -= damage;
 
             if (currentArmor < 0)
@@ -64,8 +72,20 @@ public class PlayerState : MonoBehaviour, IDamageable
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            // Handle player death
-            Destroy(gameObject);
+
+            if (animator != null)
+            {
+                // Handle player death
+                animator.SetBool("isDie", true);
+            }
+
+            if( gameObject.GetComponent< Collider>())
+            {
+                gameObject.GetComponent<Collider>().enabled = false;
+            }
+
+            // destroy after few seconds
+            Destroy(gameObject, 1.5f);
         }
     }
 }

@@ -56,6 +56,10 @@ public class PlayerController : MonoBehaviour
     {
         GetInput();
         HandleMovement();
+
+        currentWeapon.HandleWeaponInput();
+        currentWeapon.HandleAnimationInput();
+
         HandleDifWeaponMoveSpeed();
         HandleWeaponRecoilWhenMoving();
         HandleJump();
@@ -63,12 +67,6 @@ public class PlayerController : MonoBehaviour
         HandleWeaponSwitching();
         HandleBagSwitch();
         HandleWeaponDrop();
-    }
-
-    protected virtual void FixedUpdate()
-    {
-        currentWeapon.HandleWeaponInput();
-        currentWeapon.HandleAnimationInput();
     }
 
     private void GetInput()
@@ -210,17 +208,17 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded && isCrouching && !IsMoving()) {
             // increase weapon accuracy
-            currentMenifest.recoilResetSpeed = 4f * currentMenifest.maxRecoilResetSpeed;
+            currentMenifest.recoilControlRate = 2f * currentMenifest.maxRecoilResetRate;
         }
         else if (IsMoving())
         {
             // decrease weapon accuracy
-            currentMenifest.recoilResetSpeed = 0.5f * currentMenifest.maxRecoilResetSpeed;
+            currentMenifest.recoilControlRate = 0.5f * currentMenifest.maxRecoilResetRate;
         }
         else
         {
             // recover weapon accuracy
-            currentMenifest.recoilResetSpeed = currentMenifest.maxRecoilResetSpeed;
+            currentMenifest.recoilControlRate = currentMenifest.maxRecoilResetRate;
         }
     }
 
@@ -302,6 +300,9 @@ public class PlayerController : MonoBehaviour
             GameObject weaponPrefab = WeaponStorage.Instance.GetDroppedWeaponModelByName(groundWeaponName);
             if (weaponPrefab != null)
             {
+                // set ammo left
+                weaponPrefab.GetComponent<DroppedWeapon>().leftAmmo = weaponToDrop.currentAmmo;
+
                 Vector3 dropPosition = modelCenter.position + modelCenter.forward * 1.0f + Vector3.up * 5f;
                 Quaternion dropRotation = Quaternion.Euler(0, 90, 90);
 

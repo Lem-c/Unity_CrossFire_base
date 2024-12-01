@@ -214,6 +214,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1790995508730047920, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790995508730047920, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790995508730047920, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790995508730047920, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746864657413579434, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746864657413579434, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746864657413579434, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 65
+      objectReference: {fileID: 0}
     - target: {fileID: 5712000856744535106, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
       propertyPath: m_Name
       value: MainUI
@@ -1513,6 +1541,10 @@ PrefabInstance:
     - target: {fileID: 2117447991282294836, guid: c6a7ad5163c68244eaa68bdd4753ac1d, type: 3}
       propertyPath: m_Name
       value: Ground_M4A1_S_DarkDragon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888184319776029806, guid: c6a7ad5163c68244eaa68bdd4753ac1d, type: 3}
+      propertyPath: leftAmmo
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -16,13 +16,14 @@ MonoBehaviour:
   weaponType: 1
   maxAmmo: 35
   fireRate: 0.1
-  reloadTime: 2.22
+  reloadTime: 2.1
   weight: 40
-  verticalRecoil: 0.3
-  horizontalRecoil: 0.11
+  verticalRecoil: 1.5
+  horizontalRecoil: 0.6
   recoilGrowthRate: 0.1
-  recoilResetSpeed: 2
-  maxRecoilResetSpeed: 2
+  recoilResetDelay: 0.3
+  recoilControlRate: 2
+  maxRecoilResetRate: 2
   recoilPattern: []
   savedLocalPosition: {x: 0, y: 0, z: -20}
   savedLocalRotation: {x: 0, y: 0, z: 0, w: 0}

@@ -30,18 +30,12 @@ public class KnifeWeaponController : WeaponController
         lastAttackTime = -attackCooldown;
     }
 
-    private void Update()
-    {
-        HandleWeaponInput();
-    }
-
     protected override void FixedUpdate()
     {
-        HandleAnimationInput();
-
         // UI update
         displayAmmo = "";
         displayWeapon = weaponManifest.weaponName;
+        currentWeaponSprite = weaponManifest.weaponImage;
     }
 
     public override void HandleWeaponInput()

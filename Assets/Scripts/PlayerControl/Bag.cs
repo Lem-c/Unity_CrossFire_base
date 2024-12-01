@@ -71,8 +71,14 @@ public class Bag : MonoBehaviour
             {
                 GameObject knifeInstance = Instantiate(knifePrefabs[i], weaponParent);
                 knifeInstance.SetActive(false);  // Ensure it's not active immediately
-                weaponSet[2] = knifeInstance.GetComponent<WeaponController>();
+                weaponSet[2] = knifeInstance.GetComponent<KnifeWeaponController>();
                 weaponSet[2].holder = topParent;
+
+                Weapon tempManifest = weaponSet[2].weaponManifest;
+                // Set transform
+                knifeInstance.transform.localPosition = tempManifest.savedLocalPosition;
+                knifeInstance.transform.localRotation = tempManifest.savedLocalRotation;
+                knifeInstance.transform.localScale = tempManifest.savedLocalScale;
             }
 
             // Add grenade

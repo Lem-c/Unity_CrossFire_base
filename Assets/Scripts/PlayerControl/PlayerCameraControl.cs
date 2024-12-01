@@ -16,6 +16,8 @@ public class PlayerCameraControl : MonoBehaviour
     private Vector3 targetRecoil;                   // Target recoil offset
 
     private int currentStep;                        // Current recoil pattern index
+    private bool isRecovering = false;
+    private float recoilResetTimer = 0f;
 
     private Vector3 originalCameraPosition;
 
@@ -84,20 +86,25 @@ public class PlayerCameraControl : MonoBehaviour
             if (tempManifest.recoilPattern.Length > 1)
             {
                 // comment this to avoid recoil pattern recovery
-                currentStep = tempManifest.maxAmmo + 1 - playerController.currentWeapon.currentAmmo;
+                // currentStep = tempManifest.maxAmmo + 1 - playerController.currentWeapon.currentAmmo;
                 
+                Debug.Log(currentStep);
                 currentStep = Mathf.Clamp(currentStep, 0, tempManifest.recoilPattern.Length - 1);
 
                 recoilX = tempManifest.recoilPattern[currentStep].x;
                 recoilY = tempManifest.recoilPattern[currentStep].y;
 
-                }
+                currentStep++;
+                // Reset recovery state since we're firing
+                recoilResetTimer = 0f;
+                isRecovering = false;
+            }
             else
             {
                 float verticalRecoil = tempManifest.verticalRecoil;
                 float horizontalRecoil = tempManifest.horizontalRecoil;
+                
                 float growthRate = tempManifest.recoilGrowthRate;
-
                 // Incrementally increase vertical recoil within the maximum bounds
                 currentVerticalRecoil = Mathf.Min(currentVerticalRecoil + growthRate * Time.deltaTime, verticalRecoil);
 
@@ -107,6 +114,18 @@ public class PlayerCameraControl : MonoBehaviour
             }
             // Add to target recoil
             targetRecoil += new Vector3(recoilY, recoilX, 0);
+        }
+        else
+        {// Start recoil recovery process if not firing
+            if (!isRecovering)
+            {
+                recoilResetTimer += Time.deltaTime;
+                if (recoilResetTimer >= playerController.currentWeapon.weaponManifest.recoilResetDelay)
+                {
+                    currentStep = 0; // Reset the recoil step
+                    isRecovering = true;
+                }
+            }
         }
     }
 
@@ -118,7 +137,7 @@ public class PlayerCameraControl : MonoBehaviour
         // Apply to camera rotation
         playerCamera.transform.localEulerAngles -= new Vector3(currentRecoil.x, currentRecoil.y, 0);
 
-        float recoilResetSpeed = playerController.currentWeapon.weaponManifest.recoilResetSpeed;
+        float recoilResetSpeed = playerController.currentWeapon.weaponManifest.recoilControlRate;
         // Gradually reset the recoil
         targetRecoil = Vector3.Lerp(targetRecoil, Vector3.zero, Time.deltaTime * recoilResetSpeed);
 

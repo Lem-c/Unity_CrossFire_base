@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponController : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class WeaponController : MonoBehaviour
 
     public static string displayAmmo;
     public static string displayWeapon;
+    public static Sprite currentWeaponSprite;
 
     // Public method to set Animator integer parameter
     public void SetAnimatorInteger(string parameterName, int value)
@@ -38,12 +41,10 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        // HandleWeaponInput();
-        // HandleAnimationInput();
-
         // UI update
         displayAmmo = currentAmmo.ToString();
         displayWeapon = weaponManifest.weaponName;
+        currentWeaponSprite = weaponManifest.weaponImage;
     }
 
     public virtual void InitializeWeapon()

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "NewWeapon", menuName = "Weapon/Weapon")]
 public class Weapon : ScriptableObject
@@ -7,6 +8,8 @@ public class Weapon : ScriptableObject
 
     // Use an enum for weapon types to ensure consistency
     public WeaponType weaponType;
+
+    public Sprite weaponImage;
 
     public int maxAmmo;
     public float fireRate;
@@ -19,8 +22,9 @@ public class Weapon : ScriptableObject
     public float verticalRecoil;
     public float horizontalRecoil;
     public float recoilGrowthRate;
-    public float recoilResetSpeed;
-    public float maxRecoilResetSpeed;
+    public float recoilResetDelay;
+    public float recoilControlRate;
+    public float maxRecoilResetRate;
     // Recoil pattern
     public Vector2[] recoilPattern;
 

@@ -8,8 +8,9 @@ public class DroppedWeapon : MonoBehaviour
     public float pickupRange = 4.0f; // Range within which player can pick up the weapon
 
     [Header("Weapon Settings")]
-    public int weaponSlotIndex; // Weapon type index: 0 - Main, 1 - Pistol, 2 - Knife, 3 - Grenade
-    public string weaponName; // Name of the weapon prefab
+    public int weaponSlotIndex;     // Weapon type index: 0 - Main, 1 - Pistol, 2 - Knife, 3 - Grenade
+    public string weaponName;       // Name of the weapon prefab
+    public int leftAmmo = -1;           // Ammo left after dropped
 
     private Transform playerTransform;
     private PlayerController playerController;
@@ -62,6 +63,10 @@ public class DroppedWeapon : MonoBehaviour
                 playerController.weaponSlots[weaponSlotIndex] = weaponController;
                 weaponController.gameObject.SetActive(false);
                 weaponController.holder = playerController.gameObject;
+
+                if(leftAmmo >= 0) {
+                    weaponController.currentAmmo = leftAmmo;
+                }
                 Destroy(gameObject); // Destroy the dropped weapon object after pickup
             }
         }

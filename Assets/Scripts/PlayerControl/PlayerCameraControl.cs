@@ -38,7 +38,10 @@ public class PlayerCameraControl : MonoBehaviour
         HandleMouseLook();
         HandleCrouchCameraEffect();
 
-        ApplyRecoil();
+        if (!playerController.currentWeapon.isReloading)
+        {
+            ApplyRecoil();
+        }
         HandleRecoilRecover();
     }
 

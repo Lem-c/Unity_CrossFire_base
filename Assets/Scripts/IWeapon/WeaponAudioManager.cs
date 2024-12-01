@@ -34,7 +34,7 @@ public class WeaponAudioManager : MonoBehaviour
         PlaySound(drawClip);
     }
 
-    public void PlayFireSound()
+    public virtual void PlayFireSound()
     {
         PlaySound(fireClip);
     }
@@ -54,7 +54,7 @@ public class WeaponAudioManager : MonoBehaviour
     }
 
     // Private helper method to play a sound
-    private void PlaySound(AudioClip clip)
+    protected void PlaySound(AudioClip clip)
     {
         if (clip != null && audioSource != null)
         {

@@ -9,8 +9,17 @@ public class PlayerState : MonoBehaviour, IDamageable
     public float maxArmor;
     public float healthView = 0;
     public float armorView = 0;
+    public Animator animator;
 
-    protected Animator animator;
+    [Header("Body Parts Colliders")]
+    public Collider headCollider;
+    public Collider bodyCollider;
+    public Collider leftLegCollider;
+    public Collider rightLegCollider;
+    public Collider leftArmCollider;
+    public Collider rightArmCollider;
+
+
     protected float currentHealth;
     protected float currentArmor;
 
@@ -33,7 +42,10 @@ public class PlayerState : MonoBehaviour, IDamageable
         currentArmor = maxArmor;
 
         // get animator
-        animator = GetComponent<Animator>();
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
     }
 
     private void Update()
@@ -72,6 +84,7 @@ public class PlayerState : MonoBehaviour, IDamageable
 
         if (currentHealth <= 0)
         {
+            DisableAllColliders();
             currentHealth = 0;
 
             if (animator != null)
@@ -81,14 +94,18 @@ public class PlayerState : MonoBehaviour, IDamageable
                 Debug.Log("Die!!");
             }
 
-            if( gameObject.GetComponent< Collider>())
-            {
-                gameObject.GetComponent<Collider>().enabled = false;
-            }
-
             // destroy after few seconds
             Destroy(gameObject, 1.5f);
         }
     }
-}
 
+    protected void DisableAllColliders()
+    {
+        if (headCollider) headCollider.enabled = false;
+        if (bodyCollider) bodyCollider.enabled = false;
+        if (leftLegCollider) leftLegCollider.enabled = false;
+        if (rightLegCollider) rightLegCollider.enabled = false;
+        if (leftArmCollider) leftArmCollider.enabled = false;
+        if (rightArmCollider) rightArmCollider.enabled = false;
+    }
+}

@@ -108,6 +108,10 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8675443195253956229, guid: 8eb18d87fffc5b044b810c9d3c236f32, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8673357091723131905, guid: 8eb18d87fffc5b044b810c9d3c236f32, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -0.0000009273808

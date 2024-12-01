@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: M4A1_S_DarkDragon
   weaponType: 1
+  weaponImage: {fileID: 21300000, guid: 5b4773d8315dfd34bb1550a45dd2784f, type: 3}
   maxAmmo: 35
   fireRate: 0.1
   reloadTime: 2.1
@@ -22,7 +23,7 @@ MonoBehaviour:
   horizontalRecoil: 0.6
   recoilGrowthRate: 0.1
   recoilResetDelay: 0.3
-  recoilControlRate: 2
+  recoilControlRate: 1
   maxRecoilResetRate: 2
   recoilPattern: []
   savedLocalPosition: {x: 0, y: 0, z: -20}

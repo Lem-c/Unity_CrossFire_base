@@ -67,7 +67,7 @@ public class KnifeWeaponController : WeaponController
 
         // Duration to match animation
         Invoke("PerformOverlapAttack", 0.05f); // Timing for when the attack hits
-        Invoke("EndAttack", 0.4f);
+        Invoke("EndAttack", 0.15f);
     }
 
     private void HandleHeavyAttack()
@@ -87,7 +87,7 @@ public class KnifeWeaponController : WeaponController
     {
         if (!isAttacking) return;
 
-        lastAttackRadius = knifeManifest.bladeLength; // Adjust as needed
+        lastAttackRadius = knifeManifest.bladeLength;
         lastAttackPosition = transform.position + transform.forward * 1.0f; // Slightly ahead of the knife
         Collider[] hitColliders = Physics.OverlapSphere(lastAttackPosition, lastAttackRadius);
 
@@ -103,11 +103,11 @@ public class KnifeWeaponController : WeaponController
             if (hitCollider.gameObject.layer == holder.layer)
                 continue; // Skip objects on the holder's layer
 
-            var damageable = hitCollider.GetComponent<IDamageable>();
+            HitBox damageable = hitCollider.GetComponent<HitBox>();
             if (damageable != null)
             {
                 int damage = isHeavy ? knifeManifest.heavyAttackDamage : knifeManifest.lightAttackDamage;
-                damageable.TakeDamage(damage, false);
+                damageable.ApplyDamage(damage, false);
                 Debug.Log($"Knife hit {hitCollider.name} for {damage} damage.");
             }
         }

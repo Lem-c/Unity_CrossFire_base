@@ -95,27 +95,18 @@ public abstract class Bullet : MonoBehaviour
     {
         Collider collider = hit.collider;
 
-        // Ignore objects on the Bullet layer
-        if (collider.gameObject.layer == LayerMask.NameToLayer("Bullet"))
-        {
-            return;
-        }
-
-        // Return immediately if the other object's layer matches the shooter's layer
-        if (collider.gameObject.layer == shooter.layer)
-        {
-            return;
-        }
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Bullet")) return;
+        if (collider.gameObject.layer == shooter.layer) return;
 
         // Debug.Log($"Collision detected with {collider.gameObject.name}");
 
-        // Check if the target implements IDamageable
-        IDamageable target = collider.GetComponent<IDamageable>();
-        if (target != null)
+        HitBox hitbox = collider.GetComponent<HitBox>();
+        if (hitbox != null)
         {
             float distanceTravelled = Vector3.Distance(startPosition, transform.position);
-            float calculatedDamage = CalculateDamage(distanceTravelled);
-            target.TakeDamage(calculatedDamage, false);
+            float baseDamage = CalculateDamage(distanceTravelled);
+
+            hitbox.ApplyDamage(baseDamage, false);
         }
 
         if (collider.gameObject.layer == LayerMask.NameToLayer("Map"))

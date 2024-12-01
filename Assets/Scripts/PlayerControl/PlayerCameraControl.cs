@@ -87,8 +87,7 @@ public class PlayerCameraControl : MonoBehaviour
             {
                 // comment this to avoid recoil pattern recovery
                 // currentStep = tempManifest.maxAmmo + 1 - playerController.currentWeapon.currentAmmo;
-                
-                Debug.Log(currentStep);
+
                 currentStep = Mathf.Clamp(currentStep, 0, tempManifest.recoilPattern.Length - 1);
 
                 recoilX = tempManifest.recoilPattern[currentStep].x;

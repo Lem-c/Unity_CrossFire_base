@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     [Header("Weapon Settings")]
     public Transform modelCenter;
     public WeaponController currentWeapon = null;
+    // Handle UI data trans
+    public WeaponSwitch weaponSwitchUI;
 
     private void Start()
     {
@@ -50,6 +52,8 @@ public class PlayerController : MonoBehaviour
         {
             SwitchWeapon(weaponSlots[0]);
         }
+
+        if (weaponSwitchUI == null) { Debug.LogWarning("Assign weapon switch ui control"); }
     }
 
     private void Update()
@@ -160,6 +164,8 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1 + i) && weaponSlots[i] != null)
             {
                 SwitchWeapon(weaponSlots[i]);
+                // get anim
+                weaponSwitchUI.PlaySwitch(weaponSlots[i].weaponManifest.weaponType);
                 break;
             }
         }
@@ -176,9 +182,12 @@ public class PlayerController : MonoBehaviour
 
     private void DropWeapon(WeaponController weaponToDrop)
     {
+        // handle weapon throw ui change
+        weaponSwitchUI.RemoveWeaponSprite(weaponToDrop.weaponManifest.weaponType);
+
         CreateDroppedWeaponPrefab(weaponToDrop);
         Destroy(weaponToDrop.gameObject);
-
+            
         for (int i = 0; i < weaponSlots.Length; i++)
         {
             if (weaponSlots[i] == weaponToDrop)

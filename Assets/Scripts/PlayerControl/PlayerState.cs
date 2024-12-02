@@ -54,8 +54,64 @@ public class PlayerState : MonoBehaviour, IDamageable
         armorView = getCurrentArmor();
     }
 
+    public void TakeDamage(float damage)
+    {
+        CalculateHealthLeft(damage);
+
+        if (currentHealth <= 0)
+        {
+            DisableAllColliders();
+            currentHealth = 0;
+
+            if (animator != null)
+            {
+                // Handle player death
+                animator.SetBool("isDie", true);
+            }
+
+            // destroy after few seconds
+            Destroy(gameObject);
+        }
+    }
+
     // Method to take damage
     public virtual void TakeDamage(float damage, bool isLog=true)
+    {
+        CalculateHealthLeft(damage);
+
+        if (isLog)
+        {
+            Debug.Log($"Got hit! Health remaining: {currentHealth}");
+        }
+
+        if (currentHealth <= 0)
+        {
+            DisableAllColliders();
+            currentHealth = 0;
+
+            if (animator != null)
+            {
+                // Handle player death
+                animator.SetBool("isDie", true);
+                if (isLog) Debug.Log("Die!!");
+            }
+
+            // destroy after few seconds
+            // Destroy(gameObject, 1.5f);
+        }
+    }
+
+    protected void DisableAllColliders()
+    {
+        if (headCollider) headCollider.enabled = false;
+        if (bodyCollider) bodyCollider.enabled = false;
+        if (leftLegCollider) leftLegCollider.enabled = false;
+        if (rightLegCollider) rightLegCollider.enabled = false;
+        if (leftArmCollider) leftArmCollider.enabled = false;
+        if (rightArmCollider) rightArmCollider.enabled = false;
+    }
+
+    protected void CalculateHealthLeft(float damage)
     {
         if (currentArmor > 0)
         {
@@ -76,36 +132,5 @@ public class PlayerState : MonoBehaviour, IDamageable
         {
             currentHealth -= damage;
         }
-
-        if (isLog)
-        {
-            Debug.Log($"Got hit! Health remaining: {currentHealth}");
-        }
-
-        if (currentHealth <= 0)
-        {
-            DisableAllColliders();
-            currentHealth = 0;
-
-            if (animator != null)
-            {
-                // Handle player death
-                animator.SetBool("isDie", true);
-                Debug.Log("Die!!");
-            }
-
-            // destroy after few seconds
-            Destroy(gameObject, 1.5f);
-        }
-    }
-
-    protected void DisableAllColliders()
-    {
-        if (headCollider) headCollider.enabled = false;
-        if (bodyCollider) bodyCollider.enabled = false;
-        if (leftLegCollider) leftLegCollider.enabled = false;
-        if (rightLegCollider) rightLegCollider.enabled = false;
-        if (leftArmCollider) leftArmCollider.enabled = false;
-        if (rightArmCollider) rightArmCollider.enabled = false;
     }
 }

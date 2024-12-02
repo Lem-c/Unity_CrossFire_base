@@ -13,8 +13,8 @@ public class EnemyState : PlayerState
 
         if (currentHealth <= 0)
         {
-            DisableAllColliders();
             isAct = false;
+            DisableAllColliders();
             PlayerKillCount.Instance.EnemyDestroyed();
         }
     }

@@ -47,5 +47,6 @@ public enum WeaponType
 {
     Pistol,
     Rifle, 
-    Knife
+    Knife,
+    Throwing
 }

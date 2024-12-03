@@ -218,6 +218,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1790995508730047920, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -210
+      objectReference: {fileID: 0}
     - target: {fileID: 2970449126791578141, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
       propertyPath: m_SizeDelta.y
       value: 90
@@ -1065,8 +1069,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   killCount: 0
-  killStreakSound_01: {fileID: 8300000, guid: c9b48e649e7aea448ba808d4a8a82018, type: 3}
-  killStreakSound_02: {fileID: 8300000, guid: aa81a70f4dbc32d4ba9c0670499c6bc5, type: 3}
+  killStreakSound_01: {fileID: 8300000, guid: 5dba4de2959c1a1469fc17a1ecd6b862, type: 3}
+  killStreakSound_02: {fileID: 8300000, guid: af41d945e7e7f6244815fb4db571954e, type: 3}
 --- !u!114 &1628502397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1256,7 +1260,7 @@ MonoBehaviour:
   - {fileID: 3858527414084676678, guid: 41d0d57469fbf1748ba2ae9430587eb2, type: 3}
   - {fileID: 3858527414084676678, guid: 41d0d57469fbf1748ba2ae9430587eb2, type: 3}
   knifePrefabs:
-  - {fileID: 2711914819538213506, guid: 7e6ed90df07eb0c408119f7280297f48, type: 3}
+  - {fileID: 4727189755209111892, guid: 6ee47acf39cd5ce4d88139bce90be27e, type: 3}
   - {fileID: 8502273366716807982, guid: 0bc3ba722d7cf6d4497ae0f51af65570, type: 3}
   - {fileID: 8502273366716807982, guid: 0bc3ba722d7cf6d4497ae0f51af65570, type: 3}
   grenadePrefabs: []
@@ -4104,6 +4108,7 @@ MonoBehaviour:
   audioManager: {fileID: 2812203735489588521}
   muzzleFlashPrefab: {fileID: 0}
   muzzlePosition: {fileID: 0}
+  startSzie: 0.5
 --- !u!114 &3884014543529555411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5331,6 +5336,7 @@ MonoBehaviour:
   audioManager: {fileID: 6711774830198662576}
   muzzleFlashPrefab: {fileID: 0}
   muzzlePosition: {fileID: 0}
+  startSzie: 0.5
 --- !u!1 &5788487056237171688
 GameObject:
   m_ObjectHideFlags: 0
@@ -6313,6 +6319,7 @@ MonoBehaviour:
   audioManager: {fileID: 8401564516725186467}
   muzzleFlashPrefab: {fileID: 0}
   muzzlePosition: {fileID: 0}
+  startSzie: 0.5
 --- !u!114 &7383762269585000281
 MonoBehaviour:
   m_ObjectHideFlags: 0

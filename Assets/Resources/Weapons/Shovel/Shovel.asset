@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d0a41b6738405478e1bc1765478fb4, type: 3}
+  m_Name: Shovel
+  m_EditorClassIdentifier: 
+  weaponName: Shovel
+  weaponType: 2
+  weaponImage: {fileID: 21300000, guid: 20bb5a5c2c466db48ba0b58cfae5eda8, type: 3}
+  maxAmmo: 0
+  fireRate: 1.2
+  reloadTime: 0
+  weight: 20
+  verticalRecoil: 0
+  horizontalRecoil: 0
+  recoilGrowthRate: 0
+  recoilResetDelay: 0
+  recoilControlRate: 0
+  maxRecoilResetRate: 0
+  recoilPattern: []
+  savedLocalPosition: {x: 0, y: 0, z: 5}
+  savedLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+  savedLocalScale: {x: 1, y: 1, z: 1}
+  bulletPrefab: {fileID: 0}
+  animatorOverride: {fileID: 0}
+  bladeLength: 10
+  lightAttackDamage: 65
+  heavyAttackDamage: 130

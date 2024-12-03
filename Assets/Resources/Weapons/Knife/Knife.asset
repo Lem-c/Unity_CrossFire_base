@@ -16,7 +16,7 @@ MonoBehaviour:
   weaponType: 2
   weaponImage: {fileID: 21300000, guid: 7fd9087da57e60e4bb2cceb36498814d, type: 3}
   maxAmmo: 0
-  fireRate: 0
+  fireRate: 1
   reloadTime: 0
   weight: 15
   verticalRecoil: 0

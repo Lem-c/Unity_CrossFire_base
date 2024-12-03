@@ -9,7 +9,6 @@ public class KnifeWeaponController : WeaponController
     private float lastAttackRadius;
 
     // Time between consecutive attacks
-    [SerializeField] private float attackCooldown = 1.0f;
     private float lastAttackTime;
 
     protected override void Start()
@@ -27,7 +26,7 @@ public class KnifeWeaponController : WeaponController
         isHeavy = false;
 
         // Initialize to allow immediate first attack
-        lastAttackTime = -attackCooldown;
+        lastAttackTime = -knifeManifest.fireRate;
     }
 
     protected override void FixedUpdate()
@@ -40,7 +39,7 @@ public class KnifeWeaponController : WeaponController
 
     public override void HandleWeaponInput()
     {
-        if (!isReloading && hasDrawnWeapon && !isDrawing && Time.time >= lastAttackTime + attackCooldown)
+        if (!isReloading && hasDrawnWeapon && !isDrawing && Time.time >= lastAttackTime + knifeManifest.fireRate)
         {
             if (Input.GetKey(KeyCode.Mouse0)) // Light attack
             {

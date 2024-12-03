@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 574252ccb068a564db39953ba1b5e690, type: 3}
+  m_Name: DE
+  m_EditorClassIdentifier: 
+  weaponName: DesertEagle
+  weaponType: 0
+  weaponImage: {fileID: 21300000, guid: 71dd9007a5b806a42855ce0af702a785, type: 3}
+  maxAmmo: 7
+  fireRate: 0.67
+  reloadTime: 2.25
+  weight: 10
+  verticalRecoil: 0.8
+  horizontalRecoil: 0.3
+  recoilGrowthRate: 0.5
+  recoilResetDelay: 0.15
+  recoilControlRate: 4
+  maxRecoilResetRate: 4
+  recoilPattern: []
+  savedLocalPosition: {x: 1.25, y: 0, z: -15}
+  savedLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+  savedLocalScale: {x: -1, y: 1, z: 1}
+  bulletPrefab: {fileID: 6443470745177156973, guid: d27747be217666f4e8b40d9116a03337, type: 3}
+  animatorOverride: {fileID: 0}

@@ -18,7 +18,7 @@ MonoBehaviour:
   maxAmmo: 0
   fireRate: 0
   reloadTime: 0
-  weight: 0
+  weight: 15
   verticalRecoil: 0
   horizontalRecoil: 0
   recoilGrowthRate: 0
@@ -32,5 +32,5 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   animatorOverride: {fileID: 0}
   bladeLength: 5
-  lightAttackDamage: 60
-  heavyAttackDamage: 100
+  lightAttackDamage: 45
+  heavyAttackDamage: 99

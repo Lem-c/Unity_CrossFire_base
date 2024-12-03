@@ -15,6 +15,11 @@ public class WeaponController : MonoBehaviour
     protected IWeaponState currentState;
     protected Animator weaponAnimator;
 
+    // Muzzle flash
+    public GameObject muzzleFlashPrefab;
+    public Transform muzzlePosition;
+    public float startSzie = 0.5f;
+
     protected float lastFireTime;
     public bool isReloading { get; protected set; }
     public bool isFiring { get; protected set; }
@@ -134,7 +139,25 @@ public class WeaponController : MonoBehaviour
 
             isFiring = true;
 
+            // display muzzle flash
+            if (muzzleFlashPrefab != null && muzzlePosition != null)
+            {
+                GameObject muzzleFlashInstance = Instantiate(muzzleFlashPrefab, muzzlePosition.position, muzzlePosition.rotation, muzzlePosition);
+
+                ParticleSystem particleSystem = muzzleFlashInstance.GetComponent<ParticleSystem>();
+                if (particleSystem != null)
+                {
+                    // Access the Main module and set start size
+                    var mainModule = particleSystem.main;
+                    mainModule.startSize = startSzie;
+                }
+
+                muzzleFlashInstance.transform.localPosition = Vector3.zero; // Ensures it appears exactly at the muzzle position in local coordinates
+                muzzleFlashInstance.transform.localRotation = Quaternion.identity; // Keeps the rotation correct relative to the muzzle
+            }
+
             ShootBullet();
+
             // change last fire time
             lastFireTime = Time.time;
         }

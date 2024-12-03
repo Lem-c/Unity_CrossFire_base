@@ -218,25 +218,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2523750396206270334, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -561
+    - target: {fileID: 2970449126791578141, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 4746864657413579434, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -173
+    - target: {fileID: 4703954432543345157, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4821494395845711833, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5712000856744535106, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
       propertyPath: m_Name
       value: MainUI
       objectReference: {fileID: 0}
-    - target: {fileID: 6070726899432561068, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -461
-      objectReference: {fileID: 0}
-    - target: {fileID: 7719626530216776186, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -260
+    - target: {fileID: 7698947156503878318, guid: cdf6a541bfbcefb4db1d08f8a34d5997, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -438,7 +438,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 10000
-  field of view: 60
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: 1
@@ -1252,11 +1252,11 @@ MonoBehaviour:
   - {fileID: 7454882154278807167, guid: 06251eb9ab318e4458fe5a8c893a83e9, type: 3}
   - {fileID: 7454882154278807167, guid: 06251eb9ab318e4458fe5a8c893a83e9, type: 3}
   pistolPrefabs:
-  - {fileID: 3858527414084676678, guid: 41d0d57469fbf1748ba2ae9430587eb2, type: 3}
+  - {fileID: 8233976966166595756, guid: 0a5b421e59726ee47ab4acc8718db0d9, type: 3}
   - {fileID: 3858527414084676678, guid: 41d0d57469fbf1748ba2ae9430587eb2, type: 3}
   - {fileID: 3858527414084676678, guid: 41d0d57469fbf1748ba2ae9430587eb2, type: 3}
   knifePrefabs:
-  - {fileID: 8502273366716807982, guid: 0bc3ba722d7cf6d4497ae0f51af65570, type: 3}
+  - {fileID: 2711914819538213506, guid: 7e6ed90df07eb0c408119f7280297f48, type: 3}
   - {fileID: 8502273366716807982, guid: 0bc3ba722d7cf6d4497ae0f51af65570, type: 3}
   - {fileID: 8502273366716807982, guid: 0bc3ba722d7cf6d4497ae0f51af65570, type: 3}
   grenadePrefabs: []
@@ -1349,6 +1349,7 @@ MonoBehaviour:
   - {fileID: 3858527414084676678, guid: 41d0d57469fbf1748ba2ae9430587eb2, type: 3}
   - {fileID: 7454882154278807167, guid: 06251eb9ab318e4458fe5a8c893a83e9, type: 3}
   - {fileID: 363846873128419665, guid: 470ce1510d9d1a24ca5002352974f2ca, type: 3}
+  - {fileID: 3723882626990157415, guid: ff88ab599c3189e41b82b490b00f586c, type: 3}
 --- !u!4 &1644018841
 Transform:
   m_ObjectHideFlags: 0
@@ -4101,6 +4102,8 @@ MonoBehaviour:
   currentAmmo: 20
   holder: {fileID: 2766393921529887733}
   audioManager: {fileID: 2812203735489588521}
+  muzzleFlashPrefab: {fileID: 0}
+  muzzlePosition: {fileID: 0}
 --- !u!114 &3884014543529555411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5326,6 +5329,8 @@ MonoBehaviour:
   currentAmmo: 30
   holder: {fileID: 6649498180345049964}
   audioManager: {fileID: 6711774830198662576}
+  muzzleFlashPrefab: {fileID: 0}
+  muzzlePosition: {fileID: 0}
 --- !u!1 &5788487056237171688
 GameObject:
   m_ObjectHideFlags: 0
@@ -6306,6 +6311,8 @@ MonoBehaviour:
   currentAmmo: 30
   holder: {fileID: 8501277201299851647}
   audioManager: {fileID: 8401564516725186467}
+  muzzleFlashPrefab: {fileID: 0}
+  muzzlePosition: {fileID: 0}
 --- !u!114 &7383762269585000281
 MonoBehaviour:
   m_ObjectHideFlags: 0

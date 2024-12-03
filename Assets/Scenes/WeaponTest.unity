@@ -181,7 +181,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 90
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -211,7 +211,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1449895950221057195}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1673468287
@@ -308,6 +309,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &723708194837736670
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 55049276}
+    m_Modifications:
+    - target: {fileID: 1064501852040311441, guid: 0a5b421e59726ee47ab4acc8718db0d9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064501852040311441, guid: 0a5b421e59726ee47ab4acc8718db0d9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064501852040311441, guid: 0a5b421e59726ee47ab4acc8718db0d9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064501852040311441, guid: 0a5b421e59726ee47ab4acc8718db0d9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064501852040311441, guid: 0a5b421e59726ee47ab4acc8718db0d9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064501852040311441, guid: 0a5b421e59726ee47ab4acc8718db0d9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064501852040311441, guid: 0a5b421e59726ee47ab4acc8718db0d9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064501852040311441, guid: 0a5b421e59726ee47ab4acc8718db0d9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064501852040311441, guid: 0a5b421e59726ee47ab4acc8718db0d9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064501852040311441, guid: 0a5b421e59726ee47ab4acc8718db0d9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345352549052988623, guid: 0a5b421e59726ee47ab4acc8718db0d9, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233976966166595756, guid: 0a5b421e59726ee47ab4acc8718db0d9, type: 3}
+      propertyPath: m_Name
+      value: DesertEagle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0a5b421e59726ee47ab4acc8718db0d9, type: 3}
 --- !u!1001 &1031964789497898558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -369,6 +431,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79c71deefb622f84aa761aa314bd9113, type: 3}
+--- !u!4 &1449895950221057195 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1064501852040311441, guid: 0a5b421e59726ee47ab4acc8718db0d9, type: 3}
+  m_PrefabInstance: {fileID: 723708194837736670}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3548014324065263985
 PrefabInstance:
   m_ObjectHideFlags: 0

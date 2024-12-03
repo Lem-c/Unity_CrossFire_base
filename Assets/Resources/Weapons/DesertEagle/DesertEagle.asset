@@ -13,8 +13,21 @@ MonoBehaviour:
   m_Name: DesertEagle
   m_EditorClassIdentifier: 
   weaponName: DE
+  weaponType: 0
+  weaponImage: {fileID: 21300000, guid: 71dd9007a5b806a42855ce0af702a785, type: 3}
   maxAmmo: 7
   fireRate: 0.4
   reloadTime: 2.6
+  weight: 0
+  verticalRecoil: 0
+  horizontalRecoil: 0
+  recoilGrowthRate: 0
+  recoilResetDelay: 0
+  recoilControlRate: 0
+  maxRecoilResetRate: 0
+  recoilPattern: []
+  savedLocalPosition: {x: 0, y: 0, z: 0}
+  savedLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+  savedLocalScale: {x: 0, y: 0, z: 0}
   bulletPrefab: {fileID: 6443470745177156973, guid: 16adbb889600c43419e348ae993d49a2, type: 3}
   animatorOverride: {fileID: 0}

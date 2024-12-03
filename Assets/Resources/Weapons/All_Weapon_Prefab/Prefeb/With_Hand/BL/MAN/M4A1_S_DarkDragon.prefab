@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6390361136692478113
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4220423104968765337}
+  m_Layer: 8
+  m_Name: Muzzle_Flash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4220423104968765337
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6390361136692478113}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00000037619978, y: 0.7071075, z: -0.00000029853985, w: 0.7071061}
+  m_LocalPosition: {x: -0.505, y: -0.0025, z: 0.0486}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 667454312323471179}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &706446238009654272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -430,7 +461,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -9183249528656090293, guid: 516481deabf39324eb874bc249657c8c, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 4220423104968765337}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 516481deabf39324eb874bc249657c8c, type: 3}
       insertIndex: -1
@@ -484,6 +518,9 @@ MonoBehaviour:
   currentAmmo: 35
   holder: {fileID: 0}
   audioManager: {fileID: 2841686045801303715}
+  muzzleFlashPrefab: {fileID: 3968748497279765277, guid: f2740afc8765d3f48bcbcf01b6aa7efd, type: 3}
+  muzzlePosition: {fileID: 4220423104968765337}
+  startSzie: 0.5
 --- !u!114 &2841686045801303715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,3 +541,8 @@ MonoBehaviour:
   fireDynamic: {fileID: 8300000, guid: 451aa533c75a4804996aa6c252e2cd2f, type: 3}
   fireDynamic_2: {fileID: 8300000, guid: d9366dec74ee1ac4dabc7909bb3fbad4, type: 3}
   reloadGas: {fileID: 8300000, guid: bf854ca792fcc43458b4ba35d7a9b649, type: 3}
+--- !u!4 &667454312323471179 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -9183249528656090293, guid: 516481deabf39324eb874bc249657c8c, type: 3}
+  m_PrefabInstance: {fileID: 706446238009654272}
+  m_PrefabAsset: {fileID: 0}

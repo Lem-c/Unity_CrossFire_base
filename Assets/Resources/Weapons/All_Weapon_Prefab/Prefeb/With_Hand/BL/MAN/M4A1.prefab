@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7894063733766279672
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8595969340445579046}
+  m_Layer: 8
+  m_Name: Muzzle_Flash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8595969340445579046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7894063733766279672}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.27059838, y: 0.6532812, z: -0.27059862, w: -0.65328133}
+  m_LocalPosition: {x: -0.37299982, y: 0.0030000082, z: 0.02399997}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6678527324505511358}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7760940224093543214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -466,7 +497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2bea40303de6bd24c95559bdc0b4a4f1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1190444738172496708, guid: 2bea40303de6bd24c95559bdc0b4a4f1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -978,7 +1009,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3970630281442283152, guid: 2bea40303de6bd24c95559bdc0b4a4f1, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 8595969340445579046}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2bea40303de6bd24c95559bdc0b4a4f1, type: 3}
       insertIndex: -1
@@ -990,6 +1024,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4459525922517155344}
   m_SourcePrefab: {fileID: 100100000, guid: 2bea40303de6bd24c95559bdc0b4a4f1, type: 3}
+--- !u!4 &6678527324505511358 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3970630281442283152, guid: 2bea40303de6bd24c95559bdc0b4a4f1, type: 3}
+  m_PrefabInstance: {fileID: 7760940224093543214}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7454882154278807167 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2bea40303de6bd24c95559bdc0b4a4f1, type: 3}
@@ -1032,6 +1071,9 @@ MonoBehaviour:
   currentAmmo: 30
   holder: {fileID: 0}
   audioManager: {fileID: 4459525922517155344}
+  muzzleFlashPrefab: {fileID: 3156067353022802771, guid: 0bc2a659b03cac644a5702a192bdcc41, type: 3}
+  muzzlePosition: {fileID: 8595969340445579046}
+  startSzie: 0.3
 --- !u!114 &4459525922517155344
 MonoBehaviour:
   m_ObjectHideFlags: 0

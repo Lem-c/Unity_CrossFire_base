@@ -452,6 +452,14 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2675401206699960714, guid: 8cf1d57e69a36d644a92ec1fa164ba84, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2675401206699960714, guid: 8cf1d57e69a36d644a92ec1fa164ba84, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -2629327378644721171, guid: 8cf1d57e69a36d644a92ec1fa164ba84, type: 3}
       propertyPath: m_Layer
       value: 8

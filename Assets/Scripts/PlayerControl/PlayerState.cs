@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerState : MonoBehaviour, IDamageable
@@ -97,7 +95,7 @@ public class PlayerState : MonoBehaviour, IDamageable
             }
 
             // destroy after few seconds
-            // Destroy(gameObject, 1.5f);
+            Destroy(gameObject, 1f);
         }
     }
 

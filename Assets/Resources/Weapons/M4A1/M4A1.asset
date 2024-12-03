@@ -16,47 +16,17 @@ MonoBehaviour:
   weaponType: 1
   weaponImage: {fileID: 21300000, guid: 37aedefe150c1814c8ea19570e9c2839, type: 3}
   maxAmmo: 30
-  fireRate: 0.08
+  fireRate: 0.13
   reloadTime: 3.19
   weight: 35
-  verticalRecoil: 2.1
-  horizontalRecoil: 1.9
-  recoilGrowthRate: 0.1
+  verticalRecoil: 2.7
+  horizontalRecoil: 1.5
+  recoilGrowthRate: 0.35
   recoilResetDelay: 0.5
   recoilControlRate: 1
-  maxRecoilResetRate: 2
-  recoilPattern:
-  - {x: 0, y: 0}
-  - {x: 0, y: 0.1}
-  - {x: 0.2, y: 0.2}
-  - {x: 0.06, y: 0.3}
-  - {x: 0.1, y: 0.4}
-  - {x: -0.15, y: 0.5}
-  - {x: -0.6, y: 0.9}
-  - {x: -1.4, y: 1.05}
-  - {x: -1.15, y: 2.1}
-  - {x: -1.41, y: 2.07}
-  - {x: -1.19, y: 2.07}
-  - {x: -1.55, y: 2.07}
-  - {x: -1.22, y: 1.95}
-  - {x: -1.43, y: 2.01}
-  - {x: -1.39, y: 2.03}
-  - {x: -1.39, y: 2.07}
-  - {x: -0.6, y: 1.89}
-  - {x: 0.1, y: 2}
-  - {x: 1.6, y: 2.05}
-  - {x: 1.5, y: 2.05}
-  - {x: 1.36, y: 2.05}
-  - {x: 1.44, y: 2.05}
-  - {x: 1.29, y: 2.05}
-  - {x: 1.36, y: 2.05}
-  - {x: 1.32, y: 2.05}
-  - {x: 1.41, y: 2.05}
-  - {x: 1.37, y: 2.05}
-  - {x: 1.39, y: 2.05}
-  - {x: 1.29, y: 2.05}
-  - {x: 1.49, y: 2.05}
-  savedLocalPosition: {x: 0, y: 0, z: -0.5}
+  maxRecoilResetRate: 1
+  recoilPattern: []
+  savedLocalPosition: {x: 0, y: 0, z: -0.8}
   savedLocalRotation: {x: 0, y: 0, z: 0, w: 0}
   savedLocalScale: {x: -0.05, y: 0.05, z: 0.05}
   bulletPrefab: {fileID: 6443470745177156973, guid: a460254cf1b93e944819ba9f7b05684b, type: 3}

@@ -6,9 +6,18 @@
 
 - Direct import of FBX models as player arms.
 - Weapon switching between rifle, pistol, and knife.
-- Physics-based bullets with customizable damage settings.
+- Weapon drop and pick up
+- Physics-based bullets + ray detection with customizable damage settings.
 - Separate audio player for each weapon (implemented using animation events to call the corresponding methods).
 - Footstep sound effects.
+- Player state UI (health, weapon, ammo and weapon slot switch)
+- Recoil pattern system
+
+## How to use
+
+*For Experience Features*: Download the provided released ZIP file, extract it, and run the __.exe__ file (Windows only).
+
+*For Further Development*: Clone the repository to your local directory, open the project, and switch to the __Ship__ scene, which contains all necessary components.
 
 ## Resources
 

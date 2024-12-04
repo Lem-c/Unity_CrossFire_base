@@ -15,9 +15,12 @@ MonoBehaviour:
   weaponName: M4A1_S_DarkDragon
   weaponType: 1
   weaponImage: {fileID: 21300000, guid: 5b4773d8315dfd34bb1550a45dd2784f, type: 3}
+  weaponBagImage: {fileID: 0}
+  weaponKillImage: {fileID: 0}
   maxAmmo: 35
   fireRate: 0.1
   reloadTime: 2.1
+  canKinfe: 1
   weight: 40
   verticalRecoil: 1.5
   horizontalRecoil: 0.6

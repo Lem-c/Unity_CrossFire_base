@@ -7,7 +7,8 @@
 /built
 /Logs
 /UserSettings
-/Assets/JMO Assets
+/Assets/JMO Assets/
+/Assets/Resources/
 
 # Visual Studio 2015 cache directory
 /.vs/

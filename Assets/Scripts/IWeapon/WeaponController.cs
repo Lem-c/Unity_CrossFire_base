@@ -92,6 +92,13 @@ public class WeaponController : MonoBehaviour
             {
                 HandleReload();
             }
+            else if (hasDrawnWeapon && !isDrawing && Input.GetKey(KeyCode.Mouse1))
+            {
+                if (!isReloading && !isFiring)
+                {
+                    weaponAnimator.SetTrigger("Knife");
+                }
+            }
             else
             {
                 isFiring = false;

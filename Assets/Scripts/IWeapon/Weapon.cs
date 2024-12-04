@@ -10,10 +10,14 @@ public class Weapon : ScriptableObject
     public WeaponType weaponType;
 
     public Sprite weaponImage;
+    public Sprite weaponBagImage;
+    public Sprite weaponKillImage;
 
     public int maxAmmo;
     public float fireRate;
     public float reloadTime;
+
+    public bool canKinfe = false;
 
     [Range(0f, 100f)]
     public float weight;

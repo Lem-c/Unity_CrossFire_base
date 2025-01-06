@@ -11,6 +11,7 @@
 - Separate audio player for each weapon (implemented using animation events to call the corresponding methods).
 - Footstep sound effects.
 - Player state UI (health, weapon, ammo and weapon slot switch)
+- Hitbox that requires manual adjustment for damage differentiation
 - Recoil pattern system
 
 ## How to use
